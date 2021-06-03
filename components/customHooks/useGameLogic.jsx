@@ -16,6 +16,15 @@ const INITIAL_CARDS = [
   "purple",
   "grey",
   "brown",
+  "tomato",
+  "#abcdef",
+  "#abcd3f",
+  "#3382b4",
+  "#28ba48",
+  "#9d89fe",
+  "#c6c08b",
+  "#7fe33b",
+  "#85a0a0",
 ];
 
 export const useGameLogic = () => {
@@ -26,15 +35,23 @@ export const useGameLogic = () => {
   const [gameMode, setGameMode] = useState("startGame");
 
   useEffect(() => {
-    if (clickedCards.length !== 0) {
+    if (cards !== null && clickedCards.length === cards.length) {
+      nextLvl();
+      resetClickedCards();
+    } else if (clickedCards.length !== 0) {
       setNewCards(shuffleCards(cards));
     } else {
       setNewCards(selectRandomCards(lvl.cardsCount));
     }
+
+    if (cards !== null) {
+      console.log(cards.filter((card) => !clickedCards.includes(card)));
+    }
   }, [clickedCards]);
 
   useEffect(() => {
-    console.log("laksdj");
+    setNewCards(selectRandomCards(lvl.cardsCount));
+    console.log(lvl);
   }, [lvl]);
 
   function cardClickHandler(e) {
@@ -44,10 +61,7 @@ export const useGameLogic = () => {
 
   const checkForClickedCards = (cardId) => {
     // need to change this in future since now it's based on ID
-    if (clickedCards.length === cards.length) {
-      resetClickedCards();
-      nextLvl();
-    } else if (clickedCards.includes(cardId)) {
+    if (clickedCards.includes(cardId)) {
       resetLvl();
       resetScore();
       resetCards();
@@ -57,8 +71,6 @@ export const useGameLogic = () => {
       updateScore(1);
       setClickedCards((state) => [...state, cardId]);
     }
-
-    console.log(clickedCards, cards);
   };
 
   const selectRandomCards = (cardCount) => {
