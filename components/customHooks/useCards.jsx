@@ -33,7 +33,8 @@ export const useCards = () => {
 
   const resetCards = () => {
     setNewCards(INITIAL_CARDS);
+    setClickedCards([]);
   };
 
-  return { shuffleCards, resetCards, setClickedCards, cards };
+  return { shuffleCards, resetCards, setClickedCards, cards, clickedCards };
 };

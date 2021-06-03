@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const CARD_STEPS = 2;
-const MAX_CARDS = 16;
+const MAX_CARDS = 20;
 const INITIAL = { cardsCount: 4, num: 1 };
 
 export const useLvl = () => {
@@ -10,7 +10,7 @@ export const useLvl = () => {
   const nextLvl = () => {
     setLvl((prevLvl) => {
       let newCardCounts =
-        prevLvl.cardsCount < MAX_CARDS ? prevLvl.cardsCount + MAX_CARDS : MAX_CARDS;
+        prevLvl.cardsCount < MAX_CARDS ? prevLvl.cardsCount + CARD_STEPS : MAX_CARDS;
       let newLvl = prevLvl.num + 1;
       return { newCardCounts, newLvl };
     });

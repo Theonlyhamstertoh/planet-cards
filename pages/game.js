@@ -19,6 +19,15 @@ const Card = styled.div`
   cursor: pointer;
 `;
 
+const Counter = styled.button`
+  width: 100px;
+  outline: none;
+  border: none;
+  margin: 20px;
+  height: 100px;
+  font-size: 25px;
+  background: #ffaea2;
+`;
 // function GameController({ gameMode, setGameMode }) {
 //   if (gameMode === "over") {
 //     return <button onClick={() => setGameMode("startGame")}>restart Game</button>;
@@ -32,11 +41,11 @@ const Card = styled.div`
 // }
 
 export default function Game() {
-  const { cards, score, cardClickHandler, bestScore } = useGameLogic();
-  console.log(cards);
+  const { cards, score, cardClickHandler, bestScore, lvl } = useGameLogic();
 
   return (
     <React.Fragment>
+      <h1>{lvl.num}</h1>
       <CardContainer>
         {score < 10 &&
           cards.map((color) => {
@@ -48,8 +57,8 @@ export default function Game() {
           })}
       </CardContainer>
 
-      <span>{score}</span>
-      <span>{bestScore}</span>
+      <Counter>{score}</Counter>
+      <Counter>{bestScore}</Counter>
     </React.Fragment>
   );
 }
