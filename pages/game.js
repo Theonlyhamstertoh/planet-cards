@@ -49,6 +49,7 @@ export default function Game() {
       <h1>{lvl.num}</h1>
       <CardContainer>
         {score < 10 &&
+          cards !== null &&
           cards.map((color) => {
             return (
               <Card key={uniqid()} data-id={color} color={color} onClick={cardClickHandler}>

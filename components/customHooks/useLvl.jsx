@@ -15,6 +15,7 @@ export const useLvl = () => {
       return { newCardCounts, newLvl };
     });
   };
+  nextLvl();
   const resetLvl = () => {
     setLvl(INITIAL);
   };
