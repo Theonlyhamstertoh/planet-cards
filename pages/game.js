@@ -17,6 +17,7 @@ const Card = styled.div`
   width: 100px;
   height: 100px;
   cursor: pointer;
+  user-select: none;
 `;
 
 const Counter = styled.button`

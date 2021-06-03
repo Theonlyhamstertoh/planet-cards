@@ -2,26 +2,26 @@ import React, { useEffect, useState } from "react";
 import { useCards } from "./useCards";
 import { useLvl } from "./uselvl";
 import { useScore } from "./useScore";
+import { useClickedCards } from "./useClickedCards";
 
 export const useGameLogic = () => {
-  const { shuffleCards, resetCards, setClickedCards, cards, clickedCards } = useCards();
+  const { shuffleCards, resetCards, cards, setNewCards } = useCards();
   const { resetScore, updateScore, score, bestScore } = useScore();
   const { lvl, nextLvl, resetLvl } = useLvl();
+  const { setClickedCards, clickedCards, resetClickedCards } = useClickedCards();
   const [gameMode, setGameMode] = useState("startGame");
+
+  useEffect(() => {
+    if (clickedCards.length === 0) {
+      setNewCards(selectRandomCards(lvl.cardsCount));
+    } else {
+      setNewCards(shuffleCards());
+    }
+  }, [clickedCards]);
 
   function cardClickHandler(e) {
     const cardId = e.target.dataset.id;
     checkForClickedCards(cardId);
-
-    // if (clickedCards.includes(cardId)) {
-
-    //   setClickedCards([]);
-    //   setScore(0);
-    //   setGameMode("over");
-    // } else {
-    //   setClickedCards((state) => [...state, cardId]);
-    //   setScore((state) => state + 1);
-    // }
   }
 
   const checkForClickedCards = (cardId) => {
@@ -30,10 +30,16 @@ export const useGameLogic = () => {
       resetLvl();
       resetScore();
       resetCards();
+      resetClickedCards();
     } else {
       updateScore(1);
       setClickedCards((state) => [...state, cardId]);
     }
+  };
+
+  const selectRandomCards = (cardCount) => {
+    const shuffledCards = shuffleCards();
+    return shuffledCards.splice(0, cardCount);
   };
 
   return {

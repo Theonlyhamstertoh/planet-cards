@@ -15,14 +15,9 @@ const INITIAL_CARDS = [
 ];
 
 export const useCards = () => {
-  const [cards, setNewCards] = useState(INITIAL_CARDS);
-  const [clickedCards, setClickedCards] = useState([]);
+  const [cards, setNewCards] = useState(["red, orange, yellow, blue"]);
 
-  useEffect(() => {
-    setNewCards(shuffleCards(cards));
-  }, [clickedCards]);
-
-  const shuffleCards = (cards) => {
+  const shuffleCards = () => {
     const newCards = [...cards];
     for (let i = newCards.length - 1; i > 0; i--) {
       const random = Math.floor(Math.random() * (i + 1));
@@ -32,9 +27,8 @@ export const useCards = () => {
   };
 
   const resetCards = () => {
-    setNewCards(INITIAL_CARDS);
-    setClickedCards([]);
+    setNewCards(null);
   };
 
-  return { shuffleCards, resetCards, setClickedCards, cards, clickedCards };
+  return { shuffleCards, resetCards, cards, setNewCards };
 };
