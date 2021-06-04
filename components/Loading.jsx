@@ -1,15 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { FlexColCenter, StyledRegFont } from "./ReusableStyles";
+import { FlexColCenter, RainbowHeadingFont, RainbowRegFont } from "./ReusableStyles";
 import Image from "next/image";
 import styled from "styled-components";
 
-export default function LoadingScreen({ planet, lvl, setGameMode }) {
+const PLANETS = [
+  "mars.jpg",
+  "Venus.jpg",
+  "mercury.jpg",
+  "moon.jpg",
+  "sun.jpg",
+  "earth.jpg",
+  "saturn.jpg",
+  "pluto.webp",
+  "Jupiter.jpg",
+  "EPIC 220674823 b.jpg",
+  "uranus.jpg",
+  "neptune.jpg",
+  "Himalaya.jpg",
+];
+
+export default function LoadingScreen({ lvl, setGameMode }) {
   const [progressValue, setProgressValue] = useState(0);
 
   useEffect(() => {
     setTimeout(() => setProgressValue(100), 0);
 
-    setTimeout(() => setGameMode("game"), 1500);
+    setTimeout(() => setGameMode("game"), 1000);
 
     return () => {
       console.log("UNMOUNTED");
@@ -17,10 +33,23 @@ export default function LoadingScreen({ planet, lvl, setGameMode }) {
     };
   }, []);
 
+  function showPlanet() {
+    if (lvl.num === 1) {
+      return "/images/cards/mars.jpg";
+    } else {
+      return `/images/cards/${PLANETS[Math.floor(Math.random() * PLANETS.length)]}`;
+    }
+  }
   return (
     <FlexColCenter>
       <Loading progressValue={progressValue} lvl={lvl} />
-      <Image className="rotate" src={planet} width="300px" objectFit="contain" height="300px" />
+      <Image
+        className="rotate"
+        src={showPlanet()}
+        width="300px"
+        objectFit="contain"
+        height="300px"
+      />
     </FlexColCenter>
   );
 }

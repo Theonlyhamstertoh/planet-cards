@@ -11,7 +11,7 @@ export default function Game() {
   return (
     <React.Fragment>
       {gameMode === "nextLevel" ? (
-        <LoadingScreen planet="/images/cards/mars.jpg" lvl={lvl} setGameMode={setGameMode} />
+        <LoadingScreen lvl={lvl} setGameMode={setGameMode} />
       ) : (
         <>
           <GameHeading score={score} lvl={lvl} bestScore={bestScore} />

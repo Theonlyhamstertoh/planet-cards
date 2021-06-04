@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CARD_STEPS = 0;
+const CARD_STEPS = 2;
 const MAX_CARDS = 16;
 const INITIAL = { cardsCount: 2, num: 1 };
 

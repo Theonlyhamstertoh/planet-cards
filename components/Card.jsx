@@ -10,7 +10,7 @@ export default function CardContainer({ cards, onClick }) {
         cards.map((image) => {
           const name = image.replace(/\.(jpe?g|gif|png|webp)$/i, "");
           return (
-            <Card key={uniqid()} image={image} onClick={onClick}>
+            <Card key={uniqid()} dataName={image} image={image} onClick={onClick}>
               {name}
             </Card>
           );
@@ -28,14 +28,16 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-function Card({ onClick, children, image }) {
+function Card({ onClick, children, image, dataName }) {
   return (
-    <IndividualCard onClick={onClick}>
+    <IndividualCard onClick={onClick} data-name={dataName}>
       <Frame>
         <StyledImage
           src={"/images/cards/" + image}
-          width="225px"
-          height="225px"
+          // width="325px"
+          quality="75"
+          // height="325px"
+          layout="fill"
           objectFit="cover"
         />
       </Frame>
@@ -60,28 +62,19 @@ const IndividualCard = styled.div`
   transition: all 200ms;
 
   &:hover {
-    transform: scale(1.03);
+    transform: scale(1.07);
   }
 `;
 
 const Frame = styled.div`
-  padding: 8px 7px;
   position: relative;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.246);
   border-radius: 28px;
   margin-bottom: 5px;
-  background: radial-gradient(
-    120.14% 120.14% at 48.29% -9.04%,
-    #6048f1 24.81%,
-    rgba(255, 52, 113, 0.626146) 69.79%,
-    rgba(194, 194, 194, 0.26) 100%
-  );
   user-select: none;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 86%;
+  border: rgba(255, 52, 130, 0.253) 5px solid;
+  height: 85%;
 `;
 
 const StyledImage = styled(Image)`

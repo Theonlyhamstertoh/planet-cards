@@ -5,6 +5,22 @@ import { useScore } from "./useScore";
 import { useClickedCards } from "./useClickedCards";
 import Router from "next/router";
 
+const PLANETS = [
+  "mars.jpg",
+  "mercury.jpg",
+  "Venus.jpg",
+  "moon.jpg",
+  "sun.jpg",
+  "earth.jpg",
+  "saturn.jpg",
+  "pluto.webp",
+  "Jupiter.jpg",
+  "EPIC 220674823 b.jpg",
+  "uranus.jpg",
+  "neptune.jpg",
+  "Himalaya.jpg",
+  "brown dwarf.jpg",
+];
 const INITIAL_CARDS = [
   "51 Pegasi b.png",
   "55 Cancri e.jpg",
@@ -68,12 +84,13 @@ export default function useGameLogic() {
 
   useEffect(() => {
     setNewCards(selectRandomCards(lvl.cardsCount));
-    // setGameMode("nextLevel");
+    setGameMode("nextLevel");
   }, [isInitialLvl, lvl]);
 
   function cardClickHandler(e) {
     // need to change this in future since now it's based on ID
-    const cardId = e.target.dataset.id;
+    const cardId = e.currentTarget.dataset.name;
+    console.log(cardId);
     if (clickedCards.includes(cardId)) {
       resetLvl();
       resetScore();
