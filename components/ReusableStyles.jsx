@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const FlexColCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 100vh;
+  margin: 0 auto;
+`;
+
 export const StyledButton = styled.button`
   background: linear-gradient(
     269.56deg,
@@ -98,3 +108,13 @@ export const Score = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export function Loading({ progressValue, lvl }) {
+  return (
+    <>
+      <RainbowHeadingFont>LEVEL {lvl.num}</RainbowHeadingFont>
+      <RainbowRegFont>LOADING...</RainbowRegFont>
+      <progress value={progressValue} max="100"></progress>
+    </>
+  );
+}

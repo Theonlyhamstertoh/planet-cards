@@ -3,6 +3,7 @@ import { useCards } from "./useCards";
 import { useLvl } from "./uselvl";
 import { useScore } from "./useScore";
 import { useClickedCards } from "./useClickedCards";
+import Router from "next/router";
 
 const INITIAL_CARDS = [
   "red",
@@ -32,7 +33,7 @@ export const useGameLogic = () => {
   const { resetScore, updateScore, score, bestScore } = useScore();
   const { lvl, nextLvl, resetLvl, isInitialLvl } = useLvl();
   const { setClickedCards, clickedCards, resetClickedCards } = useClickedCards();
-  const [gameMode, setGameMode] = useState("start");
+  const [gameMode, setGameMode] = useState("nextLevel");
 
   useEffect(() => {
     if (cards !== null && clickedCards.length === cards.length) {
@@ -48,17 +49,9 @@ export const useGameLogic = () => {
   }, [clickedCards]);
 
   useEffect(() => {
-    fetchNewCards();
-  }, [isInitialLvl, lvl]);
-
-  useEffect(() => {
-    if (gameMode === "game") {
-    }
-    console.log(gameMode);
-  }, [gameMode]);
-  const fetchNewCards = () => {
     setNewCards(selectRandomCards(lvl.cardsCount));
-  };
+    setGameMode("nextLevel");
+  }, [isInitialLvl, lvl]);
 
   function cardClickHandler(e) {
     // need to change this in future since now it's based on ID
@@ -67,7 +60,6 @@ export const useGameLogic = () => {
       resetLvl();
       resetScore();
       resetCards();
-      // fetchNewCards();
       resetClickedCards();
     } else {
       updateScore(1);

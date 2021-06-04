@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-const CARD_STEPS = 2;
+const CARD_STEPS = 0;
 const MAX_CARDS = 16;
-const INITIAL = { cardsCount: 4, num: 1 };
+const INITIAL = { cardsCount: 2, num: 1 };
 
 export const useLvl = () => {
   const [lvl, setLvl] = useState(INITIAL);

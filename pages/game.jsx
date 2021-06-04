@@ -3,6 +3,7 @@ import styled from "styled-components";
 import uniqid from "uniqid";
 import Image from "next/image";
 import StartScreen from "./start";
+import LoadingScreen from "../components/Loading";
 import { useGameLogic } from "../components/customHooks/useGameLogic";
 import {
   RainbowTitleFont,
@@ -12,7 +13,7 @@ import {
   RainbowRegFont,
   HighScore,
 } from "../components/ReusableStyles";
-const CardContainer = styled.div`
+const Container = styled.div`
   width: 100vw;
   height: 500px;
   gap: 20px;
@@ -41,35 +42,50 @@ const Counter = styled.button`
 `;
 
 export default function Game() {
-  const { cards, score, cardClickHandler, bestScore, lvl } = useGameLogic();
-
+  const { cards, score, cardClickHandler, bestScore, lvl, gameMode, setGameMode } = useGameLogic();
   return (
     <React.Fragment>
-      <SpaceBetween>
-        <RainbowTitleFont>Don’t click the same planet twice</RainbowTitleFont>
-        <FlexColRight>
-          <Level num={lvl.num} />
-          <Score>
-            <StyledRegFont>Score: {score}</StyledRegFont>
-          </Score>
-          <HighScore>Highest: {bestScore}</HighScore>
-        </FlexColRight>
-      </SpaceBetween>
-
-      <CardContainer>
-        {cards !== null &&
-          cards.map((color) => {
-            return (
-              <Card key={uniqid()} data-id={color} color={color} onClick={cardClickHandler}>
-                {color}
-              </Card>
-            );
-          })}
-      </CardContainer>
+      {gameMode === "nextLevel" ? (
+        <LoadingScreen planet="/images/cards/mars.jpg" lvl={lvl} setGameMode={setGameMode} />
+      ) : (
+        <>
+          <GameHeading score={score} lvl={lvl} bestScore={bestScore} />
+          <CardContainer cards={cards} onClick={cardClickHandler} />
+        </>
+      )}
     </React.Fragment>
   );
 }
 
+function GameHeading({ lvl, score, bestScore }) {
+  return (
+    <SpaceBetween>
+      <RainbowTitleFont>Don’t click the same planet twice</RainbowTitleFont>
+      <FlexColRight>
+        <Level num={lvl.num} />
+        <Score>
+          <StyledRegFont>Score: {score}</StyledRegFont>
+        </Score>
+        <HighScore>Highest: {bestScore}</HighScore>
+      </FlexColRight>
+    </SpaceBetween>
+  );
+}
+
+function CardContainer({ cards, onClick }) {
+  return (
+    <Container>
+      {cards !== null &&
+        cards.map((color) => {
+          return (
+            <Card key={uniqid()} data-id={color} color={color} onClick={onClick}>
+              {color}
+            </Card>
+          );
+        })}
+    </Container>
+  );
+}
 const SpaceBetween = styled.div`
   display: flex;
   align-items: center;
