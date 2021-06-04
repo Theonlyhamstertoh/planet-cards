@@ -33,7 +33,7 @@ export const useGameLogic = () => {
   const { resetScore, updateScore, score, bestScore } = useScore();
   const { lvl, nextLvl, resetLvl, isInitialLvl } = useLvl();
   const { setClickedCards, clickedCards, resetClickedCards } = useClickedCards();
-  const [gameMode, setGameMode] = useState("nextLevel");
+  const [gameMode, setGameMode] = useState("start");
 
   useEffect(() => {
     if (cards !== null && clickedCards.length === cards.length) {
@@ -50,7 +50,7 @@ export const useGameLogic = () => {
 
   useEffect(() => {
     setNewCards(selectRandomCards(lvl.cardsCount));
-    setGameMode("nextLevel");
+    // setGameMode("nextLevel");
   }, [isInitialLvl, lvl]);
 
   function cardClickHandler(e) {

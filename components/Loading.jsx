@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { FlexColCenter, Loading } from "./ReusableStyles";
+import { FlexColCenter, Loading, StyledRegFont } from "./ReusableStyles";
 import Image from "next/image";
+import styled from "styled-components";
 
 export default function LoadingScreen({ planet, lvl, setGameMode }) {
   const [progressValue, setProgressValue] = useState(0);

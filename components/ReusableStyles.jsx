@@ -30,6 +30,7 @@ export const StyledRegFont = styled.p`
   font-weight: 700;
   font-size: 17px;
   line-height: 27px;
+  user-select: none;
   letter-spacing: 0.03em;
 `;
 
