@@ -30,9 +30,9 @@ const INITIAL_CARDS = [
 export const useGameLogic = () => {
   const { shuffleCards, resetCards, cards, setNewCards } = useCards();
   const { resetScore, updateScore, score, bestScore } = useScore();
-  const { lvl, nextLvl, resetLvl } = useLvl();
+  const { lvl, nextLvl, resetLvl, isInitialLvl } = useLvl();
   const { setClickedCards, clickedCards, resetClickedCards } = useClickedCards();
-  const [gameMode, setGameMode] = useState("startGame");
+  const [gameMode, setGameMode] = useState("start");
 
   useEffect(() => {
     if (cards !== null && clickedCards.length === cards.length) {
@@ -40,8 +40,6 @@ export const useGameLogic = () => {
       resetClickedCards();
     } else if (clickedCards.length !== 0) {
       setNewCards(shuffleCards(cards));
-    } else {
-      setNewCards(selectRandomCards(lvl.cardsCount));
     }
 
     if (cards !== null) {
@@ -50,28 +48,32 @@ export const useGameLogic = () => {
   }, [clickedCards]);
 
   useEffect(() => {
+    fetchNewCards();
+  }, [isInitialLvl, lvl]);
+
+  useEffect(() => {
+    if (gameMode === "game") {
+    }
+    console.log(gameMode);
+  }, [gameMode]);
+  const fetchNewCards = () => {
     setNewCards(selectRandomCards(lvl.cardsCount));
-    console.log(lvl);
-  }, [lvl]);
+  };
 
   function cardClickHandler(e) {
-    const cardId = e.target.dataset.id;
-    checkForClickedCards(cardId);
-  }
-
-  const checkForClickedCards = (cardId) => {
     // need to change this in future since now it's based on ID
+    const cardId = e.target.dataset.id;
     if (clickedCards.includes(cardId)) {
       resetLvl();
       resetScore();
       resetCards();
+      // fetchNewCards();
       resetClickedCards();
     } else {
-      // resetLvl();
       updateScore(1);
       setClickedCards((state) => [...state, cardId]);
     }
-  };
+  }
 
   const selectRandomCards = (cardCount) => {
     const shuffledCards = shuffleCards(INITIAL_CARDS);

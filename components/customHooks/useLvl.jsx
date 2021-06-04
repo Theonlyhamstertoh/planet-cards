@@ -1,13 +1,14 @@
 import { useState } from "react";
 
-const CARD_STEPS = 1;
-const MAX_CARDS = 2;
-const INITIAL = { cardsCount: 2, num: 1 };
+const CARD_STEPS = 2;
+const MAX_CARDS = 16;
+const INITIAL = { cardsCount: 4, num: 1 };
 
 export const useLvl = () => {
   const [lvl, setLvl] = useState(INITIAL);
-
+  const [isInitialLvl, setIsInitialLvl] = useState(true);
   const nextLvl = () => {
+    setIsInitialLvl(false);
     setLvl((prevLvl) => {
       let cardsCount = prevLvl.cardsCount < MAX_CARDS ? prevLvl.cardsCount + CARD_STEPS : MAX_CARDS;
       let num = prevLvl.num + 1;
@@ -15,7 +16,8 @@ export const useLvl = () => {
     });
   };
   const resetLvl = () => {
-    setLvl(INITIAL);
+    setIsInitialLvl(true);
+    setLvl({ ...INITIAL });
   };
-  return { lvl, nextLvl, resetLvl };
+  return { lvl, nextLvl, resetLvl, isInitialLvl };
 };

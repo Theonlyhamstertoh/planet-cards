@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import uniqid from "uniqid";
+import Image from "next/image";
+import StartScreen from "./start";
 import { useGameLogic } from "../components/customHooks/useGameLogic";
 
 const CardContainer = styled.div`
@@ -29,17 +31,6 @@ const Counter = styled.button`
   font-size: 25px;
   background: #ffaea2;
 `;
-// function GameController({ gameMode, setGameMode }) {
-//   if (gameMode === "over") {
-//     return <button onClick={() => setGameMode("startGame")}>restart Game</button>;
-//   } else if (gameMode === "startGame") {
-//     return <button onClick={() => setGameMode("play")}>Play Game</button>;
-//   } else if (gameMode === "play") {
-//     return <div>playing</div>;
-//   } else {
-//     return null;
-//   }
-// }
 
 export default function Game() {
   const { cards, score, cardClickHandler, bestScore, lvl } = useGameLogic();
