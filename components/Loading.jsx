@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlexColCenter, Loading, StyledRegFont } from "./ReusableStyles";
+import { FlexColCenter, StyledRegFont } from "./ReusableStyles";
 import Image from "next/image";
 import styled from "styled-components";
 
@@ -22,5 +22,15 @@ export default function LoadingScreen({ planet, lvl, setGameMode }) {
       <Loading progressValue={progressValue} lvl={lvl} />
       <Image className="rotate" src={planet} width="300px" objectFit="contain" height="300px" />
     </FlexColCenter>
+  );
+}
+
+function Loading({ progressValue, lvl }) {
+  return (
+    <>
+      <RainbowHeadingFont>LEVEL {lvl.num}</RainbowHeadingFont>
+      <RainbowRegFont>LOADING...</RainbowRegFont>
+      <progress value={progressValue} max="100"></progress>
+    </>
   );
 }

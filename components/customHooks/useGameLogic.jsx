@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCards } from "./useCards";
-import { useLvl } from "./uselvl";
+import { useLvl } from "./useLvl";
 import { useScore } from "./useScore";
 import { useClickedCards } from "./useClickedCards";
 import Router from "next/router";
@@ -28,7 +28,7 @@ const INITIAL_CARDS = [
   "#85a0a0",
 ];
 
-export const useGameLogic = () => {
+export default function useGameLogic() {
   const { shuffleCards, resetCards, cards, setNewCards } = useCards();
   const { resetScore, updateScore, score, bestScore } = useScore();
   const { lvl, nextLvl, resetLvl, isInitialLvl } = useLvl();
@@ -88,4 +88,4 @@ export const useGameLogic = () => {
     setGameMode,
     cardClickHandler,
   };
-};
+}

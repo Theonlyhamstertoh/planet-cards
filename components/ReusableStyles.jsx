@@ -63,10 +63,9 @@ export const RainbowTitleFont = styled.h1`
   font-size: 64px;
   line-height: 79px;
   letter-spacing: 0.035em;
-
-  /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 `;
 
+// level button
 export const LevelButton = styled.div`
   padding: 0 25px;
   height: 27px;
@@ -92,23 +91,6 @@ export const RainbowButton = ({ text, onClick }) => {
     </StyledButton>
   );
 };
-
-export const Score = styled.div`
-  background: linear-gradient(
-    269.56deg,
-    rgba(25, 117, 224, 0.73) 2.23%,
-    rgba(122, 0, 255, 0.73) 43.46%,
-    rgba(253, 14, 85, 0.73) 102.62%
-  );
-  border-radius: 36px;
-  /* width: 142.51px; 
-  */
-  padding: 0 30px;
-  height: 41px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 export function Loading({ progressValue, lvl }) {
   return (
