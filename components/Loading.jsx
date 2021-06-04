@@ -16,35 +16,36 @@ const PLANETS = [
   "EPIC 220674823 b.jpg",
   "uranus.jpg",
   "neptune.jpg",
-  "Himalaya.jpg",
 ];
 
 export default function LoadingScreen({ lvl, setGameMode }) {
   const [progressValue, setProgressValue] = useState(0);
-
+  const [count, setCount] = useState(0);
   useEffect(() => {
     setTimeout(() => setProgressValue(100), 0);
 
     setTimeout(() => setGameMode("game"), 1000);
 
     return () => {
-      console.log("UNMOUNTED");
       // setProgressValue(0);
     };
   }, []);
 
   function showPlanet() {
-    if (lvl.num === 1) {
-      return "/images/cards/mars.jpg";
-    } else {
-      return `/images/cards/${PLANETS[Math.floor(Math.random() * PLANETS.length)]}`;
-    }
+    // if (lvl.num === 1) {
+    //   return "/images/cards/mars.jpg";
+    // } else {
+    console.log("IMAGE RERUN");
+
+    return `/images/cards/${PLANETS[Math.floor(Math.random() * PLANETS.length)]}`;
+    // }
   }
   return (
     <FlexColCenter>
       <Loading progressValue={progressValue} lvl={lvl} />
       <Image
         className="rotate"
+        priority="true"
         src={showPlanet()}
         width="300px"
         objectFit="contain"

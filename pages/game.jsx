@@ -8,6 +8,7 @@ import { RainbowTitleFont, Level, HighScore, StyledRegFont } from "../components
 
 export default function Game() {
   const { cards, score, cardClickHandler, bestScore, lvl, gameMode, setGameMode } = useGameLogic();
+  // console.log("GAME RUNNING");
   return (
     <React.Fragment>
       {gameMode === "nextLevel" ? (

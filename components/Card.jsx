@@ -3,11 +3,26 @@ import styled from "styled-components";
 import { StyledRegFont } from "../components/ReusableStyles";
 import uniqid from "uniqid";
 
+const PLANETS = [
+  "mars.jpg",
+  "Venus.jpg",
+  "mercury.jpg",
+  "moon.jpg",
+  "sun.jpg",
+  "earth.jpg",
+  "saturn.jpg",
+  "pluto.webp",
+  "Jupiter.jpg",
+  "EPIC 220674823 b.jpg",
+  "uranus.jpg",
+  "neptune.jpg",
+];
+
 export default function CardContainer({ cards, onClick }) {
   return (
     <Container>
       {cards !== null &&
-        cards.map((image) => {
+        PLANETS.map((image) => {
           const name = image.replace(/\.(jpe?g|gif|png|webp)$/i, "");
           return (
             <Card key={uniqid()} dataName={image} image={image} onClick={onClick}>
@@ -24,7 +39,8 @@ const Container = styled.div`
   height: 500px;
   gap: 20px;
   padding: 50px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
   justify-content: center;
 `;
 
