@@ -4,7 +4,14 @@ import uniqid from "uniqid";
 import Image from "next/image";
 import StartScreen from "./start";
 import { useGameLogic } from "../components/customHooks/useGameLogic";
-
+import {
+  RainbowTitleFont,
+  Level,
+  Score,
+  StyledRegFont,
+  RainbowRegFont,
+  HighScore,
+} from "../components/ReusableStyles";
 const CardContainer = styled.div`
   width: 100vw;
   height: 500px;
@@ -27,6 +34,7 @@ const Counter = styled.button`
   outline: none;
   border: none;
   margin: 20px;
+
   height: 100px;
   font-size: 25px;
   background: #ffaea2;
@@ -37,7 +45,17 @@ export default function Game() {
 
   return (
     <React.Fragment>
-      <h1>{lvl.num}</h1>
+      <SpaceBetween>
+        <RainbowTitleFont>Don’t click the same planet twice</RainbowTitleFont>
+        <FlexColRight>
+          <Level num={lvl.num} />
+          <Score>
+            <StyledRegFont>Score: {score}</StyledRegFont>
+          </Score>
+          <HighScore>Highest: {bestScore}</HighScore>
+        </FlexColRight>
+      </SpaceBetween>
+
       <CardContainer>
         {cards !== null &&
           cards.map((color) => {
@@ -48,9 +66,21 @@ export default function Game() {
             );
           })}
       </CardContainer>
-
-      <Counter>{score}</Counter>
-      <Counter>{bestScore}</Counter>
     </React.Fragment>
   );
 }
+
+const SpaceBetween = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  justify-content: space-between;
+`;
+
+const FlexColRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-; */
+  align-items: flex-end;
+  gap: 10px;
+`;

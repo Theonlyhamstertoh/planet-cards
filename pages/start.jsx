@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
-import {
-  FlexColCenter,
-  StyledButton,
-  StyledRegFont,
-  RainbowHeadingFont,
-  RainbowRegFont,
-} from "../components/ReusableStyles";
-
+import { RainbowHeadingFont, RainbowRegFont, RainbowButton } from "../components/ReusableStyles";
 import Image from "next/image";
 import Router from "next/router";
+import styled from "styled-components";
+
+const FlexColCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 100vh;
+  margin: 0 auto;
+`;
+
 export default function StartScreen() {
   const [isButtonClicked, setButtonClicked] = useState(false);
   const [progressValue, setProgressValue] = useState(0);
@@ -23,9 +28,7 @@ export default function StartScreen() {
   return (
     <FlexColCenter>
       {!isButtonClicked && (
-        <StyledButton onClick={() => setButtonClicked(true)}>
-          <StyledRegFont>Start Game</StyledRegFont>
-        </StyledButton>
+        <RainbowButton onClick={() => setButtonClicked(true)} text="Start Game" />
       )}
       {isButtonClicked && <Loading progressValue={progressValue} />}
       <Image
