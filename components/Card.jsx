@@ -28,13 +28,13 @@ function Card({ onClick, color }) {
     <IndividualCard onClick={onClick}>
       <Frame>
         <StyledImage
-          src="/images/cards/mars.jpg"
+          src="/images/cards/mercury.png"
           width="225px"
           height="225px"
-          objectFit="contain"
+          objectFit="cover"
         />
       </Frame>
-      <StyledRegFont>{color}</StyledRegFont>
+      <StyledRegFont>The Bubble Nebula</StyledRegFont>
     </IndividualCard>
   );
 }
