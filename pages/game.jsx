@@ -3,6 +3,7 @@ import styled from "styled-components";
 import LoadingScreen from "../components/Loading";
 import CardContainer from "../components/Card";
 import useGameLogic from "../components/customHooks/useGameLogic";
+
 import { RainbowTitleFont, Level, HighScore, StyledRegFont } from "../components/ReusableStyles";
 
 export default function Game() {

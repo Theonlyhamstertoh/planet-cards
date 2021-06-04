@@ -7,8 +7,13 @@ export default function CardContainer({ cards, onClick }) {
   return (
     <Container>
       {cards !== null &&
-        cards.map((color) => {
-          return <Card key={uniqid()} data-id={color} color={color} onClick={onClick} />;
+        cards.map((image) => {
+          const name = image.replace(/\.(jpe?g|gif|png|webp)$/i, "");
+          return (
+            <Card key={uniqid()} image={image} onClick={onClick}>
+              {name}
+            </Card>
+          );
         })}
     </Container>
   );
@@ -23,18 +28,18 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-function Card({ onClick, color }) {
+function Card({ onClick, children, image }) {
   return (
     <IndividualCard onClick={onClick}>
       <Frame>
         <StyledImage
-          src="/images/cards/mercury.png"
+          src={"/images/cards/" + image}
           width="225px"
           height="225px"
           objectFit="cover"
         />
       </Frame>
-      <StyledRegFont>The Bubble Nebula</StyledRegFont>
+      <StyledRegFont>{children}</StyledRegFont>
     </IndividualCard>
   );
 }
@@ -50,7 +55,7 @@ const IndividualCard = styled.div`
   );
   border: 1px solid #000000;
   box-sizing: border-box;
-  border-radius: 27px;
+  border-radius: 29px;
   cursor: pointer;
   transition: all 200ms;
 

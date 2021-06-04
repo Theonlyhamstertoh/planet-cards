@@ -91,13 +91,3 @@ export const RainbowButton = ({ text, onClick }) => {
     </StyledButton>
   );
 };
-
-export function Loading({ progressValue, lvl }) {
-  return (
-    <>
-      <RainbowHeadingFont>LEVEL {lvl.num}</RainbowHeadingFont>
-      <RainbowRegFont>LOADING...</RainbowRegFont>
-      <progress value={progressValue} max="100"></progress>
-    </>
-  );
-}

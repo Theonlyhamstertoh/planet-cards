@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 export const useCards = () => {
   const [cards, setNewCards] = useState(null);
+
   const shuffleCards = (cards) => {
     const newCards = [...cards];
     for (let i = newCards.length - 1; i > 0; i--) {
