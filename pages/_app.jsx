@@ -38,7 +38,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   progress {
-  border-radius: 7px; 
+  border-radius: 30px; 
   width: 80%;
   height: 32px;
   margin-top: 10px;
@@ -46,13 +46,13 @@ const GlobalStyles = createGlobalStyle`
   }
 progress::-webkit-progress-bar {
   background: #1d1a1d;
-  border-radius: 20px;
+  border-radius: 30px;
 
 }
 progress::-webkit-progress-value {
   background: linear-gradient(92.42deg, #EEB0B0 -42.17%, #FF42CA -38.06%, #7A00FF 115.42%);
-  border-radius: 20px;
-  transition: width 1s ease-in;
+  border-radius: 30px;
+  transition: width 0.3s ease-in;
 }
 
 

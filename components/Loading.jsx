@@ -18,31 +18,61 @@ const PLANETS = [
   "neptune.jpg",
 ];
 
-export default function LoadingScreen({ lvl, setGameMode }) {
+export default function LoadingScreen({ lvl, setGameMode, cards }) {
   const [progressValue, setProgressValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(120);
   const [count, setCount] = useState(0);
   useEffect(() => {
-    setTimeout(() => setProgressValue(100), 0);
-
-    setTimeout(() => setGameMode("game"), 1000);
-
+    // setTimeout(() => setProgressValue(100), 0);
+    setMaxValue(cards.length * 10);
+    console.log(maxValue);
+    FetchPlanets();
     return () => {
       // setProgressValue(0);
     };
   }, []);
 
-  function showPlanet() {
-    // if (lvl.num === 1) {
-    //   return "/images/cards/mars.jpg";
-    // } else {
-    console.log("IMAGE RERUN");
+  useEffect(() => {
+    if (progressValue === maxValue) {
+      setTimeout(() => setGameMode("game"), 300);
+    }
+  }, [progressValue]);
 
-    return `/images/cards/${PLANETS[Math.floor(Math.random() * PLANETS.length)]}`;
-    // }
+  const FetchPlanets = async () => {
+    const planetPromises = cards.map((planet) => {
+      const name = planet.replace(/\.(jpe?g|gif|png|webp)$/i, "");
+
+      return new Promise((resolve) => {
+        window.setTimeout(() => {
+          setProgressValue((prevValue) => {
+            if (prevValue === maxValue) return maxValue;
+            return prevValue + 10;
+          });
+          resolve(true);
+        }, Math.random() * 2000);
+        // return (
+        //   <Card key={uniqid()} dataName={planet} planet={planet} onLoad={planetLoaded}>
+        //     {name}
+        //   </Card>
+        // );
+      });
+    });
+
+    const images = await Promise.all(planetPromises);
+    console.log(images);
+  };
+
+  function showPlanet() {
+    if (lvl.num === 1) {
+      return "/images/cards/mars.jpg";
+    } else {
+      return `/images/cards/${PLANETS[Math.floor(Math.random() * PLANETS.length)]}`;
+    }
   }
+
   return (
     <FlexColCenter>
-      <Loading progressValue={progressValue} lvl={lvl} />
+      <Loading progressValue={progressValue} max={maxValue} lvl={lvl} />
       <Image
         className="rotate"
         priority="true"
@@ -55,12 +85,12 @@ export default function LoadingScreen({ lvl, setGameMode }) {
   );
 }
 
-function Loading({ progressValue, lvl }) {
+function Loading({ progressValue, lvl, max }) {
   return (
     <>
       <RainbowHeadingFont>LEVEL {lvl.num}</RainbowHeadingFont>
       <RainbowRegFont>LOADING...</RainbowRegFont>
-      <progress value={progressValue} max="100"></progress>
+      <progress value={progressValue} max={max}></progress>
     </>
   );
 }

@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import LoadingScreen from "../components/Loading";
-import CardContainer from "../components/Card";
+import CardContainer, { FetchPlanets } from "../components/Card";
 import useGameLogic from "../components/customHooks/useGameLogic";
-
+import jsonData from "../planets.json";
+import path from "path";
+import fs from "fs";
 import { RainbowTitleFont, Level, HighScore, StyledRegFont } from "../components/ReusableStyles";
+import Image from "next/image";
+export default function Game({ data: { planets } }) {
+  // console.log(planets);
 
-export default function Game() {
-  const { cards, score, cardClickHandler, bestScore, lvl, gameMode, setGameMode } = useGameLogic();
+  const { cards, setNewCards, score, cardClickHandler, bestScore, lvl, gameMode, setGameMode } =
+    useGameLogic();
   // console.log("GAME RUNNING");
+
+  useEffect(() => {
+    // setNewCards(selectRandomCards(planets));
+  }, []);
+
   return (
     <React.Fragment>
+      {/* <FetchPlanets /> */}
       {gameMode === "nextLevel" ? (
-        <LoadingScreen lvl={lvl} setGameMode={setGameMode} />
+        <LoadingScreen cards={cards} lvl={lvl} setGameMode={setGameMode} />
       ) : (
         <>
           <GameHeading score={score} lvl={lvl} bestScore={bestScore} />
@@ -23,6 +34,17 @@ export default function Game() {
   );
 }
 
+export async function getStaticProps() {
+  const planetsDirectory = path.join(process.cwd(), "planets.json");
+
+  const fileContents = fs.readFileSync(planetsDirectory, "utf8");
+  const data = JSON.parse(fileContents);
+  return {
+    props: {
+      data,
+    },
+  };
+}
 function GameHeading({ lvl, score, bestScore }) {
   return (
     <SpaceBetween>

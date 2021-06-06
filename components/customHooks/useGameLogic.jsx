@@ -4,6 +4,7 @@ import { useLvl } from "./useLvl";
 import { useScore } from "./useScore";
 import { useClickedCards } from "./useClickedCards";
 import Router from "next/router";
+import path from "path";
 
 const INITIAL_CARDS = [
   "51 Pegasi b.png",
@@ -94,6 +95,7 @@ export default function useGameLogic() {
     updateScore,
     score,
     cards,
+    setNewCards,
     bestScore,
     lvl,
     nextLvl,

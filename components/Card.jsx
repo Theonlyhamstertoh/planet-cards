@@ -2,6 +2,8 @@ import Image from "next/image";
 import styled from "styled-components";
 import { StyledRegFont } from "../components/ReusableStyles";
 import uniqid from "uniqid";
+import React, { useState } from "react";
+import image from "next/image";
 
 const PLANETS = [
   "mars.jpg",
@@ -19,13 +21,19 @@ const PLANETS = [
 ];
 
 export default function CardContainer({ cards, onClick }) {
+  function loaded() {
+    // resolve();
+    // resolve the individual promise here.
+    // add 10.
+    // when all Promise resolves, the loading screen disappears.
+  }
   return (
     <Container>
       {cards !== null &&
-        PLANETS.map((image) => {
+        cards.map((image) => {
           const name = image.replace(/\.(jpe?g|gif|png|webp)$/i, "");
           return (
-            <Card key={uniqid()} dataName={image} image={image} onClick={onClick}>
+            <Card key={uniqid()} dataName={image} image={image} onClick={onClick} onLoad={loaded}>
               {name}
             </Card>
           );
@@ -44,12 +52,13 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-function Card({ onClick, children, image, dataName }) {
+function Card({ onClick, children, image, dataName, onLoad }) {
   return (
     <IndividualCard onClick={onClick} data-name={dataName}>
       <Frame>
         <StyledImage
           src={"/images/cards/" + image}
+          onLoad={onLoad}
           // width="325px"
           quality="75"
           // height="325px"
