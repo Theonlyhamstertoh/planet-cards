@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { FlexColCenter, RainbowHeadingFont, RainbowRegFont } from "./ReusableStyles";
 import Image from "next/image";
 import styled from "styled-components";
@@ -8,7 +8,6 @@ const PLANETS = [
   "Venus.jpg",
   "mercury.jpg",
   "moon.jpg",
-  "sun.jpg",
   "earth.jpg",
   "saturn.jpg",
   "pluto.webp",
@@ -18,72 +17,48 @@ const PLANETS = [
   "neptune.jpg",
 ];
 
-export default function LoadingScreen({ lvl, setGameMode, cards }) {
-  const [progressValue, setProgressValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(120);
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    // setTimeout(() => setProgressValue(100), 0);
-    setMaxValue(cards.length * 10);
-    console.log(maxValue);
-    FetchPlanets();
-    return () => {
-      // setProgressValue(0);
-    };
-  }, []);
+// export default function LoadingScreen({ lvl, setGameMode, cards }) {
+// const [progressValue, setProgressValue] = useState(0);
+// const [maxValue, setMaxValue] = useState(100);
+// useEffect(() => {
+//   setTimeout(() => setProgressValue(100), 0);
+//   setMaxValue(cards.length * 10);
+//   return () => {
+//     // setProgressValue(0);
+//   };
+// }, []);
 
-  useEffect(() => {
-    if (progressValue === maxValue) {
-      setTimeout(() => setGameMode("game"), 300);
-    }
-  }, [progressValue]);
+// useEffect(() => {
+//   if (progressValue === maxValue) {
+//     console.log(progressValue);
+//     setTimeout(() => setGameMode("game"), 550);
+//   }
+//   console.log(progressValue);
+// }, [progressValue]);
 
-  const FetchPlanets = async () => {
-    const planetPromises = cards.map((planet) => {
-      const name = planet.replace(/\.(jpe?g|gif|png|webp)$/i, "");
+// function showPlanet() {
+//   if (lvl.num === 1 || lvl.num > 13) {
+//     return "/images/cards/mars.jpg";
+//   }
+// } else if (lvl.num < 12) {
+//   return `/images/cards/${PLANETS[lvl.num]}`;
+// }
+// }
 
-      return new Promise((resolve) => {
-        window.setTimeout(() => {
-          setProgressValue((prevValue) => {
-            if (prevValue === maxValue) return maxValue;
-            return prevValue + 10;
-          });
-          resolve(true);
-        }, Math.random() * 2000);
-        // return (
-        //   <Card key={uniqid()} dataName={planet} planet={planet} onLoad={planetLoaded}>
-        //     {name}
-        //   </Card>
-        // );
-      });
-    });
-
-    const images = await Promise.all(planetPromises);
-    console.log(images);
-  };
-
-  function showPlanet() {
-    if (lvl.num === 1) {
-      return "/images/cards/mars.jpg";
-    } else {
-      return `/images/cards/${PLANETS[Math.floor(Math.random() * PLANETS.length)]}`;
-    }
-  }
-
-  return (
-    <FlexColCenter>
-      <Loading progressValue={progressValue} max={maxValue} lvl={lvl} />
-      <Image
-        className="rotate"
-        priority="true"
-        src={showPlanet()}
-        width="300px"
-        objectFit="contain"
-        height="300px"
-      />
-    </FlexColCenter>
-  );
-}
+//   return (
+//     <FlexColCenter>
+//       <Loading progressValue={progressValue} max={maxValue} lvl={lvl} />
+//       <Image
+//         className="rotate"
+//         priority="true"
+//         src={showPlanet()}
+//         width="300px"
+//         objectFit="contain"
+//         height="300px"
+//       />
+//     </FlexColCenter>
+//   );
+// }
 
 function Loading({ progressValue, lvl, max }) {
   return (
@@ -94,3 +69,21 @@ function Loading({ progressValue, lvl, max }) {
     </>
   );
 }
+
+// useEffect(async () => {
+//   await Promise.all(
+//     cards.map((card) => {
+//       return loadCard(card, setProgressValue);
+//     })
+//   );
+// }, []);
+
+// const loadCard = (card, setProgressValue) =>
+//   new Promise((resolve, reject) => {
+//     const image = document.createElement("img");
+//     image.onload = () => {
+//       resolve(true);
+//       setProgressValue((prev) => prev + 10);
+//     };
+//     image.src = "/images/cards/" + card;
+//   });

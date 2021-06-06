@@ -2,7 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { StyledRegFont } from "../components/ReusableStyles";
 import uniqid from "uniqid";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import image from "next/image";
 
 const PLANETS = [
@@ -20,25 +20,32 @@ const PLANETS = [
   "neptune.jpg",
 ];
 
-export default function CardContainer({ cards, onClick }) {
-  function loaded() {
-    // resolve();
-    // resolve the individual promise here.
-    // add 10.
-    // when all Promise resolves, the loading screen disappears.
-  }
+export default function GameBoard({ cards, onClick, gameMode }) {
+  const [count, setCount] = useState(0);
+  const [mount, setMount] = useState(false);
+  if (cards === null) return;
   return (
     <Container>
-      {cards !== null &&
-        cards.map((image) => {
-          const name = image.replace(/\.(jpe?g|gif|png|webp)$/i, "");
-          return (
-            <Card key={uniqid()} dataName={image} image={image} onClick={onClick} onLoad={loaded}>
-              {name}
-            </Card>
-          );
-        })}
+      {cards.map((image) => {
+        const name = image.replace(/\.(jpe?g|gif|png|webp)$/i, "");
+        return (
+          <Card key={image} dataName={image} image={image} onClick={onClick}>
+            {name}
+          </Card>
+        );
+      })}
     </Container>
+  );
+}
+
+function Card({ onClick, children, image, dataName }) {
+  return (
+    <IndividualCard onClick={onClick} data-name={dataName}>
+      <Frame>
+        <StyledImage src={"/images/cards/" + image} quality="100" layout="fill" objectFit="cover" />
+      </Frame>
+      <StyledRegFont>{children}</StyledRegFont>
+    </IndividualCard>
   );
 }
 
@@ -52,24 +59,12 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-function Card({ onClick, children, image, dataName, onLoad }) {
-  return (
-    <IndividualCard onClick={onClick} data-name={dataName}>
-      <Frame>
-        <StyledImage
-          src={"/images/cards/" + image}
-          onLoad={onLoad}
-          // width="325px"
-          quality="75"
-          // height="325px"
-          layout="fill"
-          objectFit="cover"
-        />
-      </Frame>
-      <StyledRegFont>{children}</StyledRegFont>
-    </IndividualCard>
-  );
-}
+const DefaultImg = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+`;
 
 const IndividualCard = styled.div`
   width: 230.71px;

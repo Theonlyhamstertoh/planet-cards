@@ -3,8 +3,6 @@ import { useCards } from "./useCards";
 import { useLvl } from "./useLvl";
 import { useScore } from "./useScore";
 import { useClickedCards } from "./useClickedCards";
-import Router from "next/router";
-import path from "path";
 
 const INITIAL_CARDS = [
   "51 Pegasi b.png",
@@ -54,8 +52,10 @@ export default function useGameLogic() {
     if (cards !== null && clickedCards.length === cards.length) {
       nextLvl();
       resetClickedCards();
+      console.log("NEXT LVL");
     } else if (clickedCards.length !== 0) {
       setNewCards(shuffleCards(cards));
+      console.log("SWITCH CARDS AND SHUFFLE");
     }
 
     // if (cards !== null) {
@@ -69,7 +69,6 @@ export default function useGameLogic() {
   }, [isInitialLvl, lvl]);
 
   function cardClickHandler(e) {
-    // need to change this in future since now it's based on ID
     const cardId = e.currentTarget.dataset.name;
     if (clickedCards.includes(cardId)) {
       resetLvl();
@@ -103,5 +102,6 @@ export default function useGameLogic() {
     gameMode,
     setGameMode,
     cardClickHandler,
+    selectRandomCards,
   };
 }
