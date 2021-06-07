@@ -47,8 +47,7 @@ export default function useGameLogic() {
   const { resetScore, updateScore, score, bestScore } = useScore();
   const { lvl, nextLvl, resetLvl, isInitialLvl } = useLvl();
   const { setClickedCards, clickedCards, resetClickedCards } = useClickedCards();
-  const { setMaxValue, showPlanet, resetProgress, incrementProgress, maxValue, progressValue } =
-    useLoading();
+  const { setMaxValue, resetProgress, incrementProgress, maxValue, progressValue } = useLoading();
   const [gameMode, setGameMode] = useState("start");
   useEffect(() => {
     if (cards !== null && clickedCards.length === cards.length) {
@@ -58,20 +57,22 @@ export default function useGameLogic() {
       setNewCards(shuffleCards(cards));
     }
 
-    // if (cards !== null) {
-    //   console.log(cards.filter((card) => !clickedCards.includes(card)));
-    // }
+    if (cards !== null) {
+      console.log(cards.filter((card) => !clickedCards.includes(card)));
+    }
   }, [clickedCards]);
 
   useEffect(() => {
-    console.log(progressValue);
+    if (progressValue === maxValue) {
+      window.setTimeout(() => setGameMode("game"), 480);
+    }
   }, [progressValue]);
 
   useEffect(() => {
-    setNewCards(selectRandomCards(lvl.cardsCount));
     setGameMode("nextLevel");
     resetProgress();
     setMaxValue(lvl.cardsCount * 10);
+    setNewCards(selectRandomCards(lvl.cardsCount));
   }, [isInitialLvl, lvl]);
 
   function cardClickHandler(e) {
@@ -110,5 +111,7 @@ export default function useGameLogic() {
     cardClickHandler,
     selectRandomCards,
     incrementProgress,
+    progressValue,
+    maxValue,
   };
 }

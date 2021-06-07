@@ -21,16 +21,15 @@ const PLANETS = [
 ];
 
 export default function GameBoard({ cards, onClick, gameMode, incrementProgress }) {
-  const [count, setCount] = useState(0);
-  const [mount, setMount] = useState(false);
   if (cards === null) return;
 
   function loaded() {
+    console.log("IMAGE LOADED");
     incrementProgress(10);
   }
 
   return (
-    <Container>
+    <Container style={gameMode === "nextLevel" ? { display: "none" } : {}}>
       {cards.map((image) => {
         const name = image.replace(/\.(jpe?g|gif|png|webp)$/i, "");
         return (
@@ -44,15 +43,20 @@ export default function GameBoard({ cards, onClick, gameMode, incrementProgress 
 }
 
 function Card({ onClick, children, image, dataName, onLoad }) {
+  function error() {
+    console.log("ERROR");
+  }
+
   return (
     <IndividualCard onClick={onClick} data-name={dataName}>
       <Frame>
         <StyledImage
           priority={true}
+          onLoad={onLoad}
+          onError={error}
           src={"/images/cards/" + image}
           // quality="100"
           layout="fill"
-          onLoad={onLoad}
           // width="500px"
           // height="500px"
           objectFit="cover"

@@ -5,11 +5,8 @@ export default function useLoading() {
   const [maxValue, setMaxValue] = useState(100);
 
   useEffect(() => {
-    // if (progressValue === maxValue) {
-    //   setTimeout(() => setGameMode("game"), 450);
-    // }
-    console.log(progressValue, maxValue);
-  }, [progressValue]);
+    // console.log(progressValue, maxValue);
+  });
 
   function incrementProgress(value) {
     setProgressValue((prev) => prev + value);
@@ -19,17 +16,8 @@ export default function useLoading() {
     setProgressValue(0);
   }
 
-  function showPlanet() {
-    if (lvl.num === 1 || lvl.num > 13) {
-      return "/images/cards/mars.jpg";
-    } else if (lvl.num < 12) {
-      return `/images/cards/${PLANETS[lvl.num]}`;
-    }
-  }
-
   return {
     setMaxValue,
-    showPlanet,
     resetProgress,
     incrementProgress,
     maxValue,

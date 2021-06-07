@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { RainbowTitleFont, Level, HighScore, StyledRegFont } from "../components/ReusableStyles";
 
-export default function GameHeading({ lvl, score, bestScore }) {
+export default function GameHeading({ lvl, score, bestScore, gameMode }) {
   return (
-    <SpaceBetween>
+    <SpaceBetween style={gameMode === "nextLevel" ? { display: "none" } : {}}>
       <RainbowTitleFont>Don’t click the same planet twice</RainbowTitleFont>
       <FlexColRight>
         <Level num={lvl.num} />

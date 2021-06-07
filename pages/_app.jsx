@@ -37,6 +37,12 @@ const GlobalStyles = createGlobalStyle`
     animation: rotate 20s linear infinite;
   }
 
+.defaultImg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+}
   progress {
   border-radius: 30px; 
   width: 80%;

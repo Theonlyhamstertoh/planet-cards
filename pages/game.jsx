@@ -14,9 +14,10 @@ export default function Game() {
     bestScore,
     lvl,
     gameMode,
-    setGameMode,
+    progressValue,
     selectRandomCards,
     incrementProgress,
+    maxValue,
   } = useGameLogic();
 
   useEffect(() => {
@@ -25,7 +26,10 @@ export default function Game() {
 
   return (
     <React.Fragment>
-      <GameHeading score={score} lvl={lvl} bestScore={bestScore} />
+      {cards !== null && gameMode === "nextLevel" && (
+        <LoadingScreen lvl={lvl} cards={cards} progressValue={progressValue} max={maxValue} />
+      )}
+      <GameHeading score={score} lvl={lvl} gameMode={gameMode} bestScore={bestScore} />
       {cards !== null && (
         <GameBoard
           gameMode={gameMode}

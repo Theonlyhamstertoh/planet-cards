@@ -17,22 +17,37 @@ const PLANETS = [
   "neptune.jpg",
 ];
 
-export default function LoadingScreen({ lvl, setGameMode, cards }) {
+export default function LoadingScreen({ lvl, progressValue, max, showPlanet }) {
+  function showPlanet() {
+    if (lvl.num === 1 || lvl.num > 13) {
+      return "/images/cards/mars.jpg";
+    } else if (lvl.num < 12) {
+      return `/images/cards/${PLANETS[lvl.num]}`;
+    }
+  }
+
   return (
     <FlexColCenter>
-      <Loading progressValue={progressValue} max={maxValue} lvl={lvl} />
-      <Image
+      <Loading progressValue={progressValue} max={max} lvl={lvl} />
+      <DefaultImg
         className="rotate"
-        priority="true"
+        // priority="true"
         src={showPlanet()}
-        width="300px"
-        objectFit="contain"
-        height="300px"
+        // width="300px"
+        // objectFit="contain"
+        // height="300px"
       />
     </FlexColCenter>
   );
 }
-
+const DefaultImg = styled.img`
+  object-fit: cover;
+  z-index: -1;
+  width: 300px;
+  height: 300px;
+  margin-top: 20px;
+  border-radius: 24px;
+`;
 function Loading({ progressValue, lvl, max }) {
   return (
     <>
