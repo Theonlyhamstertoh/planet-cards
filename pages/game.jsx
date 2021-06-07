@@ -16,6 +16,7 @@ export default function Game() {
     gameMode,
     setGameMode,
     selectRandomCards,
+    incrementProgress,
   } = useGameLogic();
 
   useEffect(() => {
@@ -25,7 +26,14 @@ export default function Game() {
   return (
     <React.Fragment>
       <GameHeading score={score} lvl={lvl} bestScore={bestScore} />
-      {cards !== null && <GameBoard gameMode={gameMode} cards={cards} onClick={cardClickHandler} />}
+      {cards !== null && (
+        <GameBoard
+          gameMode={gameMode}
+          cards={cards}
+          onClick={cardClickHandler}
+          incrementProgress={incrementProgress}
+        />
+      )}
     </React.Fragment>
   );
 }

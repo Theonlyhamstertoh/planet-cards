@@ -5,9 +5,10 @@ export default function useLoading() {
   const [maxValue, setMaxValue] = useState(100);
 
   useEffect(() => {
-    if (progressValue === maxValue) {
-      setTimeout(() => setGameMode("game"), 450);
-    }
+    // if (progressValue === maxValue) {
+    //   setTimeout(() => setGameMode("game"), 450);
+    // }
+    console.log(progressValue, maxValue);
   }, [progressValue]);
 
   function incrementProgress(value) {

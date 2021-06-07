@@ -63,13 +63,14 @@ export default function useGameLogic() {
     // }
   }, [clickedCards]);
 
-  // useEffect(() => {
-  //   console.log(maxValue);
-  // }, [maxValue]);
+  useEffect(() => {
+    console.log(progressValue);
+  }, [progressValue]);
 
   useEffect(() => {
     setNewCards(selectRandomCards(lvl.cardsCount));
     setGameMode("nextLevel");
+    resetProgress();
     setMaxValue(lvl.cardsCount * 10);
   }, [isInitialLvl, lvl]);
 
@@ -108,5 +109,6 @@ export default function useGameLogic() {
     setGameMode,
     cardClickHandler,
     selectRandomCards,
+    incrementProgress,
   };
 }

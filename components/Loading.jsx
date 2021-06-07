@@ -18,32 +18,6 @@ const PLANETS = [
 ];
 
 export default function LoadingScreen({ lvl, setGameMode, cards }) {
-  const [progressValue, setProgressValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(100);
-  useEffect(() => {
-    setTimeout(() => setProgressValue(100), 0);
-    setMaxValue(cards.length * 10);
-  }, []);
-
-  useEffect(() => {
-    console.log(maxValue);
-  }, [maxValue]);
-  useEffect(() => {
-    if (progressValue === maxValue) {
-      console.log(progressValue);
-      setTimeout(() => setGameMode("game"), 550);
-    }
-    console.log(progressValue);
-  }, [progressValue]);
-
-  function showPlanet() {
-    if (lvl.num === 1 || lvl.num > 13) {
-      return "/images/cards/mars.jpg";
-    } else if (lvl.num < 12) {
-      return `/images/cards/${PLANETS[lvl.num]}`;
-    }
-  }
-
   return (
     <FlexColCenter>
       <Loading progressValue={progressValue} max={maxValue} lvl={lvl} />

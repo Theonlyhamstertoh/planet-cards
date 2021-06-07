@@ -20,18 +20,15 @@ const PLANETS = [
   "neptune.jpg",
 ];
 
-export default function GameBoard({ cards, onClick, gameMode }) {
+export default function GameBoard({ cards, onClick, gameMode, incrementProgress }) {
   const [count, setCount] = useState(0);
   const [mount, setMount] = useState(false);
   if (cards === null) return;
 
   function loaded() {
-    console.log("IMAGE HAS BEEN LOADED");
+    incrementProgress(10);
   }
 
-  useEffect(() => {
-    console.log("CALELD");
-  }, []);
   return (
     <Container>
       {cards.map((image) => {
