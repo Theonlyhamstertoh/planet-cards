@@ -3,6 +3,7 @@ import { useCards } from "./useCards";
 import { useLvl } from "./useLvl";
 import { useScore } from "./useScore";
 import { useClickedCards } from "./useClickedCards";
+import useLoading from "./useLoading";
 
 const INITIAL_CARDS = [
   "51 Pegasi b.png",
@@ -46,16 +47,15 @@ export default function useGameLogic() {
   const { resetScore, updateScore, score, bestScore } = useScore();
   const { lvl, nextLvl, resetLvl, isInitialLvl } = useLvl();
   const { setClickedCards, clickedCards, resetClickedCards } = useClickedCards();
+  const { setMaxValue, showPlanet, resetProgress, incrementProgress, maxValue, progressValue } =
+    useLoading();
   const [gameMode, setGameMode] = useState("start");
-
   useEffect(() => {
     if (cards !== null && clickedCards.length === cards.length) {
       nextLvl();
       resetClickedCards();
-      console.log("NEXT LVL");
     } else if (clickedCards.length !== 0) {
       setNewCards(shuffleCards(cards));
-      console.log("SWITCH CARDS AND SHUFFLE");
     }
 
     // if (cards !== null) {
@@ -63,9 +63,14 @@ export default function useGameLogic() {
     // }
   }, [clickedCards]);
 
+  // useEffect(() => {
+  //   console.log(maxValue);
+  // }, [maxValue]);
+
   useEffect(() => {
     setNewCards(selectRandomCards(lvl.cardsCount));
     setGameMode("nextLevel");
+    setMaxValue(lvl.cardsCount * 10);
   }, [isInitialLvl, lvl]);
 
   function cardClickHandler(e) {

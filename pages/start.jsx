@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RainbowButton, FlexColCenter } from "../components/ReusableStyles";
 import Image from "next/image";
 import Router from "next/router";
+import styled from "styled-components";
 
 export default function StartScreen() {
   const [isButtonClicked, setButtonClicked] = useState(false);
