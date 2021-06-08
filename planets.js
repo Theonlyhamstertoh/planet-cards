@@ -13,11 +13,11 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "blackhole.webp",
+    src: "Blackhole.webp",
     id: uniqid(),
   },
   {
-    src: "brown dwarf.jpg",
+    src: "Brown dwarf.jpg",
     id: uniqid(),
   },
   {
@@ -25,15 +25,15 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "ceres.jpg",
+    src: "Ceres.jpg",
     id: uniqid(),
   },
   {
-    src: "curiosityrover.webp",
+    src: "Curiosity Rover.webp",
     id: uniqid(),
   },
   {
-    src: "earth.jpg",
+    src: "Earth.jpg",
     id: uniqid(),
   },
   {
@@ -49,7 +49,7 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "hd 189733b.jpg",
+    src: "Hd 189733b.jpg",
     id: uniqid(),
   },
   {
@@ -77,11 +77,11 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "mars.jpg",
+    src: "Mars.jpg",
     id: uniqid(),
   },
   {
-    src: "mercury.jpg",
+    src: "Mercury.jpg",
     id: uniqid(),
   },
   {
@@ -93,11 +93,11 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "moon.jpg",
+    src: "Moon.jpg",
     id: uniqid(),
   },
   {
-    src: "neptune.jpg",
+    src: "Neptune.jpg",
     id: uniqid(),
   },
   {
@@ -113,15 +113,15 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "saturn.jpg",
+    src: "Saturn.jpg",
     id: uniqid(),
   },
   {
-    src: "sun.jpg",
+    src: "Sun.jpg",
     id: uniqid(),
   },
   {
-    src: "The Bubble Nebula.jpg",
+    src: "Bubble Nebula.jpg",
     id: uniqid(),
   },
   {
@@ -129,7 +129,7 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "uranus.jpg",
+    src: "Uranus.jpg",
     id: uniqid(),
   },
   {

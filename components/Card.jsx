@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled, { keyframes } from "styled-components";
-import { StyledRegFont } from "../components/ReusableStyles";
+import { CardFont } from "../components/ReusableStyles";
 import React, { useEffect } from "react";
 
 export default function GameBoard({ cards, onClick, incrementProgress, clickedCards, gameMode }) {
@@ -43,19 +43,26 @@ function Card({ onClick, children, image, dataName, onLoad, clickedCards }) {
       <Frame>
         <DefaultImg onLoad={onLoad} src={"/images/cards/" + image} alt={"picture of " + children} />
       </Frame>
-      <StyledRegFont>{children}</StyledRegFont>
+      <CardFont>{children}</CardFont>
     </IndividualCard>
   );
 }
 
 const Container = styled.div`
-  width: 100vw;
-  height: 500px;
-  gap: 20px;
-  padding: 50px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 250px);
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  /* gap: 20px; */
+  justify-items: center;
+  /* grid-template-columns: repeat(auto-fit, 165px); */
   justify-content: center;
+
+  @media (min-width: 950px) {
+    padding: 20px 80px;
+  }
+  @media (max-width: 400px) {
+  }
 `;
 
 const DefaultImg = styled.img`
@@ -77,9 +84,10 @@ const fadeIn = keyframes`
 `;
 
 const IndividualCard = styled.div`
-  width: 230.71px;
-  height: 267.05px;
+  flex: 0 0 145px;
+  height: 178px;
   text-align: center;
+  margin: 7px;
   background: linear-gradient(
     94.91deg,
     rgba(122, 0, 255, 0.45) 0.83%,
@@ -93,22 +101,28 @@ const IndividualCard = styled.div`
   &:hover {
     transform: scale(1.07);
   }
-
+  &:active {
+    transform: scale(0.8);
+  }
   animation: ${fadeIn} 0.3s ease-in-out;
+
+  @media (min-width: 1100px) {
+    flex: 0 0 182px;
+    height: 211px;
+  }
+
+  @media (max-width: 320px) {
+    margin: 5px;
+  }
 `;
 
 const Frame = styled.div`
   position: relative;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.246);
   border-radius: 28px;
-  margin-bottom: 5px;
   user-select: none;
   width: 100%;
   border: rgba(255, 52, 130, 0.253) 5px solid;
   height: 85%;
 `;
-
-const StyledImage = styled(Image)`
-  border-radius: 24px;
-  user-select: none;
-`;
+``;

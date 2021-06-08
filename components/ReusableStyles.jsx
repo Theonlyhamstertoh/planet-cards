@@ -34,6 +34,9 @@ export const StyledRegFont = styled.p`
   letter-spacing: 0.03em;
 `;
 
+export const CardFont = styled(StyledRegFont)`
+  font-size: 12px;
+`;
 export const RainbowRegFont = styled(StyledRegFont)`
   background: linear-gradient(268.84deg, #ff42ca 5.71%, #ff42ca 5.72%, #9839ff 122.65%);
   -webkit-background-clip: text;
@@ -64,6 +67,15 @@ export const RainbowTitleFont = styled.h1`
   margin-bottom: 20px;
   line-height: 79px;
   letter-spacing: 0.035em;
+
+  @media (max-width: 800px) {
+    font-size: 45px;
+    margin-bottom: 10px;
+  }
+  @media (max-width: 320px) {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
 `;
 
 // level button

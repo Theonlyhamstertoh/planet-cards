@@ -4,7 +4,7 @@ import { RainbowTitleFont, Level, HighScore, StyledRegFont } from "../components
 export default function GameHeading({ lvl, score, bestScore, gameMode }) {
   return (
     <SpaceBetween style={gameMode === "nextLevel" ? { display: "none" } : {}}>
-      <RainbowTitleFont>Don’t click the same planet twice</RainbowTitleFont>
+      <RainbowTitleFont>Planet Cards</RainbowTitleFont>
       <FlexColRight>
         <Level num={lvl.num} />
         <Score>
@@ -24,10 +24,8 @@ const Score = styled.div`
     rgba(253, 14, 85, 0.73) 102.62%
   );
   border-radius: 36px;
-  /* width: 142.51px; 
-  */
-  padding: 0 30px;
-  height: 41px;
+  padding: 5px 30px;
+  height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,12 +36,24 @@ const SpaceBetween = styled.div`
   align-items: center;
   margin: 20px;
   justify-content: space-between;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 const FlexColRight = styled.div`
   display: flex;
+  width: max-content;
   flex-direction: column;
   /* justify-content: flex-; */
   align-items: flex-end;
   gap: 10px;
+
+  @media (max-width: 800px) {
+    align-items: center;
+
+    ${HighScore} {
+      padding: 0;
+    }
+  }
 `;
