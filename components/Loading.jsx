@@ -17,11 +17,12 @@ const PLANETS = [
   "neptune.jpg",
 ];
 
-export default function LoadingScreen({ lvl, progressValue, max, showPlanet }) {
+export default function LoadingScreen({ lvl, progressValue, max }) {
   function showPlanet() {
-    if (lvl.num === 1 || lvl.num > 13) {
+    if (lvl.num === 1 || lvl.num > 10) {
       return "/images/cards/mars.jpg";
-    } else if (lvl.num < 12) {
+    } else if (lvl.num < 11) {
+      console.log(PLANETS[lvl.num]);
       return `/images/cards/${PLANETS[lvl.num]}`;
     }
   }

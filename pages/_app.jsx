@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-
+import Head from "next/head";
 const GlobalStyles = createGlobalStyle`
   body {
     background: #000000;
@@ -68,6 +68,9 @@ progress::-webkit-progress-value {
 function MyApp({ Component, pageProps }) {
   return (
     <>
+      <Head>
+        <title>Planet Cards</title>
+      </Head>
       <GlobalStyles />
       <Component {...pageProps} />
     </>

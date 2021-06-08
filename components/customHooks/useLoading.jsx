@@ -4,11 +4,12 @@ export default function useLoading() {
   const [progressValue, setProgressValue] = useState(0);
   const [maxValue, setMaxValue] = useState(100);
 
-  useEffect(() => {
-    // console.log(progressValue, maxValue);
-  });
+  // useEffect(() => {
+  //   console.log("");
+  // });
 
   function incrementProgress(value) {
+    if (progressValue === maxValue) return;
     setProgressValue((prev) => prev + value);
   }
 

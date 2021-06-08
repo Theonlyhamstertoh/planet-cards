@@ -3,7 +3,7 @@ import { RainbowTitleFont, Level, HighScore, StyledRegFont } from "../components
 
 export default function GameHeading({ lvl, score, bestScore, gameMode }) {
   return (
-    <SpaceBetween style={gameMode === "nextLevel" ? { display: "none" } : {}}>
+    <SpaceBetween>
       <RainbowTitleFont>Don’t click the same planet twice</RainbowTitleFont>
       <FlexColRight>
         <Level num={lvl.num} />

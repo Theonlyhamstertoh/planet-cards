@@ -1,8 +1,8 @@
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { StyledRegFont } from "../components/ReusableStyles";
 import uniqid from "uniqid";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import image from "next/image";
 
 const PLANETS = [
@@ -20,20 +20,29 @@ const PLANETS = [
   "neptune.jpg",
 ];
 
-export default function GameBoard({ cards, onClick, gameMode, incrementProgress }) {
-  if (cards === null) return;
-
-  function loaded() {
-    console.log("IMAGE LOADED");
-    incrementProgress(10);
+export default function GameBoard({ cards, onClick, incrementProgress, clickedCards }) {
+  if (cards === null) {
+    return;
   }
 
+  const loaded = (img) => {
+    console.log("LOADED");
+    incrementProgress(10);
+  };
+
   return (
-    <Container style={gameMode === "nextLevel" ? { display: "none" } : {}}>
+    <Container>
       {cards.map((image) => {
-        const name = image.replace(/\.(jpe?g|gif|png|webp)$/i, "");
+        const name = image.src.replace(/\.(jpe?g|gif|png|webp)$/i, "");
         return (
-          <Card key={image} dataName={image} image={image} onClick={onClick} onLoad={loaded}>
+          <Card
+            key={image.id}
+            dataName={image.src}
+            image={image.src}
+            onClick={onClick}
+            onLoad={loaded}
+            clickedCards={clickedCards}
+          >
             {name}
           </Card>
         );
@@ -42,24 +51,29 @@ export default function GameBoard({ cards, onClick, gameMode, incrementProgress 
   );
 }
 
-function Card({ onClick, children, image, dataName, onLoad }) {
+function Card({ onClick, children, image, dataName, onLoad, clickedCards }) {
   function error() {
     console.log("ERROR");
   }
 
   return (
-    <IndividualCard onClick={onClick} data-name={dataName}>
+    <IndividualCard
+      style={clickedCards.includes(image) ? { background: "green" } : {}}
+      onClick={onClick}
+      data-name={dataName}
+    >
       <Frame>
-        <StyledImage
-          priority={true}
+        <DefaultImg
+          // priority={true}
           onLoad={onLoad}
           onError={error}
           src={"/images/cards/" + image}
+          alt={"picture of " + children}
           // quality="100"
-          layout="fill"
+          // layout="fill"
           // width="500px"
           // height="500px"
-          objectFit="cover"
+          // objectFit="cover"
         />
       </Frame>
       <StyledRegFont>{children}</StyledRegFont>
@@ -84,6 +98,16 @@ const DefaultImg = styled.img`
   border-radius: 24px;
 `;
 
+const fadeIn = keyframes`
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
+`;
+
 const IndividualCard = styled.div`
   width: 230.71px;
   height: 267.05px;
@@ -98,10 +122,11 @@ const IndividualCard = styled.div`
   border-radius: 29px;
   cursor: pointer;
   transition: all 200ms;
-
   &:hover {
     transform: scale(1.07);
   }
+
+  animation: ${fadeIn} 0.3s ease-in-out;
 `;
 
 const Frame = styled.div`

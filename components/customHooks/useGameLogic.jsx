@@ -4,44 +4,8 @@ import { useLvl } from "./useLvl";
 import { useScore } from "./useScore";
 import { useClickedCards } from "./useClickedCards";
 import useLoading from "./useLoading";
-
-const INITIAL_CARDS = [
-  "51 Pegasi b.png",
-  "55 Cancri e.jpg",
-  "AG Carinae.jpg",
-  "blackhole.webp",
-  "brown dwarf.jpg",
-  "Carina Nebula.jpg",
-  "ceres.jpg",
-  "curiosityrover.webp",
-  "earth.jpg",
-  "EPIC 220674823 b.jpg",
-  "GJ 1132b.jpg",
-  "GJ 3470b.jpg",
-  "hd 189733b.jpg",
-  "HD 80606 b.jpg",
-  "Horsehead Nebula.jpg",
-  "HR_8799e.jpg",
-  "Hubble.jpg",
-  "Jupiter.jpg",
-  "Luhman 16A.jpg",
-  "mars.jpg",
-  "mercury.jpg",
-  "Messier 106.jpg",
-  "Messier 57.jpg",
-  "moon.jpg",
-  "neptune.jpg",
-  "NGC 2841.jpg",
-  "NGC 6217.jpg",
-  "pluto.webp",
-  "saturn.jpg",
-  "sun.jpg",
-  "The Bubble Nebula.jpg",
-  "UGC 2885.jpg",
-  "uranus.jpg",
-  "Venus.jpg",
-];
-
+import { planets } from "../../planets";
+import uniqid from "uniqid";
 export default function useGameLogic() {
   const { shuffleCards, resetCards, cards, setNewCards } = useCards();
   const { resetScore, updateScore, score, bestScore } = useScore();
@@ -49,6 +13,8 @@ export default function useGameLogic() {
   const { setClickedCards, clickedCards, resetClickedCards } = useClickedCards();
   const { setMaxValue, resetProgress, incrementProgress, maxValue, progressValue } = useLoading();
   const [gameMode, setGameMode] = useState("start");
+  const [allPlanetCards, setAllPlanetCards] = useState(planets);
+
   useEffect(() => {
     if (cards !== null && clickedCards.length === cards.length) {
       nextLvl();
@@ -56,22 +22,24 @@ export default function useGameLogic() {
     } else if (clickedCards.length !== 0) {
       setNewCards(shuffleCards(cards));
     }
-
-    if (cards !== null) {
-      console.log(cards.filter((card) => !clickedCards.includes(card)));
-    }
   }, [clickedCards]);
 
   useEffect(() => {
+    console.log(progressValue, maxValue);
     if (progressValue === maxValue) {
       window.setTimeout(() => setGameMode("game"), 480);
     }
   }, [progressValue]);
 
   useEffect(() => {
-    setGameMode("nextLevel");
     resetProgress();
     setMaxValue(lvl.cardsCount * 10);
+    setGameMode("nextLevel");
+    setAllPlanetCards((prev) => {
+      return prev.map((planetObject) => {
+        return { ...planetObject, id: uniqid() };
+      });
+    });
     setNewCards(selectRandomCards(lvl.cardsCount));
   }, [isInitialLvl, lvl]);
 
@@ -89,7 +57,7 @@ export default function useGameLogic() {
   }
 
   const selectRandomCards = (cardCount) => {
-    const shuffledCards = shuffleCards(INITIAL_CARDS);
+    const shuffledCards = shuffleCards(allPlanetCards);
     return shuffledCards.splice(0, cardCount);
   };
 
@@ -113,5 +81,6 @@ export default function useGameLogic() {
     incrementProgress,
     progressValue,
     maxValue,
+    clickedCards,
   };
 }
