@@ -6,11 +6,14 @@ export const useCards = () => {
 
   const shuffleCards = (cards) => {
     const newCards = [...cards];
-    for (let i = newCards.length - 1; i > 0; i--) {
+    const swapOrders = newCards.sort(() => 0.5 - Math.random());
+    for (let i = swapOrders.length - 1; i > 0; i--) {
       const random = Math.floor(Math.random() * (i + 1));
-      [newCards[i], newCards[random]] = [newCards[random], newCards[i]];
+      [swapOrders[i], swapOrders[random]] = [swapOrders[random], swapOrders[i]];
     }
-    return newCards;
+
+    const ThirdSwap = swapOrders.sort(() => 0.5 - Math.random());
+    return ThirdSwap;
   };
 
   const resetCards = () => {

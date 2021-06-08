@@ -2,6 +2,7 @@ import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 import { CardFont } from "../components/ReusableStyles";
 import React, { useEffect } from "react";
+import uniqid from "uniqid";
 
 export default function GameBoard({ cards, onClick, incrementProgress, clickedCards, gameMode }) {
   if (cards === null) {
@@ -18,7 +19,7 @@ export default function GameBoard({ cards, onClick, incrementProgress, clickedCa
         const name = image.src.replace(/\.(jpe?g|gif|png|webp)$/i, "");
         return (
           <Card
-            key={image.id}
+            key={uniqid()}
             dataName={image.src}
             image={image.src}
             onClick={onClick}
@@ -51,6 +52,7 @@ function Card({ onClick, children, image, dataName, onLoad, clickedCards }) {
 const Container = styled.div`
   width: 100%;
   display: flex;
+  grid-area: main;
   flex-wrap: wrap;
   margin-bottom: 30px;
   /* gap: 20px; */
@@ -97,7 +99,7 @@ const IndividualCard = styled.div`
   box-sizing: border-box;
   border-radius: 29px;
   cursor: pointer;
-  transition: all 200ms;
+  transition: all 300ms;
   &:hover {
     transform: scale(1.07);
   }
@@ -111,7 +113,7 @@ const IndividualCard = styled.div`
     height: 211px;
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 340px) {
     margin: 5px;
   }
 `;

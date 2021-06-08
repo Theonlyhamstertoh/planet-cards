@@ -5,6 +5,7 @@ import GameHeading from "../components/GameHeading";
 import GameBoard from "../components/Card";
 import useGameLogic from "../components/customHooks/useGameLogic";
 import Image from "next/image";
+import { RainbowRegFont, LevelButton } from "../components/ReusableStyles";
 export default function Game() {
   const {
     cards,
@@ -20,7 +21,7 @@ export default function Game() {
   } = useGameLogic();
 
   return (
-    <React.Fragment>
+    <GridLayout>
       {cards !== null && gameMode === "nextLevel" && (
         <LoadingScreen lvl={lvl} cards={cards} progressValue={progressValue} max={maxValue} />
       )}
@@ -35,6 +36,28 @@ export default function Game() {
           incrementProgress={incrementProgress}
         />
       )}
-    </React.Fragment>
+      <LeaderboardButton>
+        <RainbowRegFont>Leaderboard</RainbowRegFont>
+      </LeaderboardButton>
+    </GridLayout>
   );
 }
+
+const GridLayout = styled.div`
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "nav" "main" "footer";
+`;
+
+const LeaderboardButton = styled(LevelButton)`
+  grid-area: footer;
+  margin: 10px;
+  cursor: pointer;
+
+  @media (max-width: 800px) {
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+`;

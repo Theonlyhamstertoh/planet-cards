@@ -44,9 +44,9 @@ export default function LoadingScreen({ lvl, progressValue, max }) {
 const LoadingImg = styled.img`
   object-fit: cover;
   z-index: -1;
-  width: 300px;
+  width: 250px;
   user-select: none;
-  height: 300px;
+  height: 250px;
   margin-top: 20px;
   border-radius: 24px;
 `;

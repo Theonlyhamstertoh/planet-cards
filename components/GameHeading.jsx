@@ -1,21 +1,48 @@
 import styled from "styled-components";
-import { RainbowTitleFont, Level, HighScore, StyledRegFont } from "../components/ReusableStyles";
+import {
+  RainbowTitleFont,
+  Level,
+  HighScore,
+  StyledRegFont,
+  RainbowRegFont,
+  LevelButton,
+  StyledButton,
+} from "../components/ReusableStyles";
 
 export default function GameHeading({ lvl, score, bestScore, gameMode }) {
   return (
     <SpaceBetween style={gameMode === "nextLevel" ? { display: "none" } : {}}>
-      <RainbowTitleFont>Planet Cards</RainbowTitleFont>
+      <CenterText>
+        <RainbowTitleFont>Planet Cards</RainbowTitleFont>
+        <Caption>Don't click the same planet twice!</Caption>
+      </CenterText>
       <FlexColRight>
         <Level num={lvl.num} />
         <Score>
           <StyledRegFont>Score: {score}</StyledRegFont>
         </Score>
-        <HighScore>Highest: {bestScore}</HighScore>
+        <HighScore>Best: {bestScore}</HighScore>
       </FlexColRight>
     </SpaceBetween>
   );
 }
 
+const CenterText = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 800px) {
+    align-items: center;
+  }
+`;
+
+const Caption = styled(RainbowRegFont)`
+  font-weight: 600;
+  margin: 5px 0 20px 0;
+  color: #b1b1b1;
+  font-size: 14px;
+  line-height: initial;
+  width: max-content;
+`;
 const Score = styled.div`
   background: linear-gradient(
     269.56deg,
@@ -34,6 +61,7 @@ const Score = styled.div`
 const SpaceBetween = styled.div`
   display: flex;
   align-items: center;
+  grid-area: nav;
   margin: 20px;
   justify-content: space-between;
   @media (max-width: 800px) {
@@ -50,10 +78,17 @@ const FlexColRight = styled.div`
   gap: 10px;
 
   @media (max-width: 800px) {
+    flex-direction: row;
+    width: 100%;
     align-items: center;
-
-    ${HighScore} {
+    justify-content: center;
+    ${StyledRegFont} {
+      font-size: 12px;
       padding: 0;
+    }
+
+    ${Score} {
+      padding: 5px 15px;
     }
   }
 `;

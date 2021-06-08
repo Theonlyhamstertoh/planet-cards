@@ -35,10 +35,14 @@ export const StyledRegFont = styled.p`
 `;
 
 export const CardFont = styled(StyledRegFont)`
-  font-size: 12px;
+  font-size: 15px;
+
+  @media (max-width: 1100px) {
+    font-size: 12.7px;
+  }
 `;
 export const RainbowRegFont = styled(StyledRegFont)`
-  background: linear-gradient(268.84deg, #ff42ca 5.71%, #ff42ca 5.72%, #9839ff 122.65%);
+  background: linear-gradient(268.84deg, #ff6ad5 5.71%, #ff42ca 5.72%, #ac5eff 122.65%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
@@ -63,18 +67,18 @@ export const RainbowTitleFont = styled.h1`
   font-weight: 800;
   /* width: 652px; */
   /* height: 165px; */
-  font-size: 64px;
-  margin-bottom: 20px;
-  line-height: 79px;
+  font-size: 80px;
+  /* margin-bottom: 20px; */
+  line-height: 70px;
   letter-spacing: 0.035em;
 
   @media (max-width: 800px) {
     font-size: 45px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
   }
-  @media (max-width: 320px) {
-    font-size: 40px;
-    margin-bottom: 10px;
+  @media (max-width: 380px) {
+    font-size: 35px;
+    /* margin-bottom: 10px; */
   }
 `;
 
@@ -85,8 +89,13 @@ export const LevelButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(51, 10, 52, 0.73);
+  background: rgb(64, 12, 65);
   border-radius: 36px;
+  width: fit-content;
+
+  @media (max-width: 800px) {
+    padding: 0 15px;
+  }
 `;
 
 export const Level = ({ num }) => {
