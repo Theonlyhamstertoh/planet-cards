@@ -1,37 +1,19 @@
 import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 import { StyledRegFont } from "../components/ReusableStyles";
-import uniqid from "uniqid";
 import React, { useEffect } from "react";
-import image from "next/image";
 
-const PLANETS = [
-  "mars.jpg",
-  "Venus.jpg",
-  "mercury.jpg",
-  "moon.jpg",
-  "sun.jpg",
-  "earth.jpg",
-  "saturn.jpg",
-  "pluto.webp",
-  "Jupiter.jpg",
-  "EPIC 220674823 b.jpg",
-  "uranus.jpg",
-  "neptune.jpg",
-];
-
-export default function GameBoard({ cards, onClick, incrementProgress, clickedCards }) {
+export default function GameBoard({ cards, onClick, incrementProgress, clickedCards, gameMode }) {
   if (cards === null) {
     return;
   }
 
   const loaded = (img) => {
-    console.log("LOADED");
     incrementProgress(10);
   };
 
   return (
-    <Container>
+    <Container style={gameMode === "nextLevel" ? { display: "none" } : {}}>
       {cards.map((image) => {
         const name = image.src.replace(/\.(jpe?g|gif|png|webp)$/i, "");
         return (
@@ -52,10 +34,6 @@ export default function GameBoard({ cards, onClick, incrementProgress, clickedCa
 }
 
 function Card({ onClick, children, image, dataName, onLoad, clickedCards }) {
-  function error() {
-    console.log("ERROR");
-  }
-
   return (
     <IndividualCard
       style={clickedCards.includes(image) ? { background: "green" } : {}}
@@ -63,18 +41,7 @@ function Card({ onClick, children, image, dataName, onLoad, clickedCards }) {
       data-name={dataName}
     >
       <Frame>
-        <DefaultImg
-          // priority={true}
-          onLoad={onLoad}
-          onError={error}
-          src={"/images/cards/" + image}
-          alt={"picture of " + children}
-          // quality="100"
-          // layout="fill"
-          // width="500px"
-          // height="500px"
-          // objectFit="cover"
-        />
+        <DefaultImg onLoad={onLoad} src={"/images/cards/" + image} alt={"picture of " + children} />
       </Frame>
       <StyledRegFont>{children}</StyledRegFont>
     </IndividualCard>
@@ -96,6 +63,7 @@ const DefaultImg = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 24px;
+  user-select: none;
 `;
 
 const fadeIn = keyframes`

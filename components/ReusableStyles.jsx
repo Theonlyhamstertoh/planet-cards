@@ -58,9 +58,10 @@ export const RainbowTitleFont = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
-  width: 652px;
-  height: 165px;
+  /* width: 652px; */
+  /* height: 165px; */
   font-size: 64px;
+  margin-bottom: 20px;
   line-height: 79px;
   letter-spacing: 0.035em;
 `;

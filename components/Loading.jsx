@@ -30,7 +30,7 @@ export default function LoadingScreen({ lvl, progressValue, max }) {
   return (
     <FlexColCenter>
       <Loading progressValue={progressValue} max={max} lvl={lvl} />
-      <DefaultImg
+      <LoadingImg
         className="rotate"
         // priority="true"
         src={showPlanet()}
@@ -41,10 +41,11 @@ export default function LoadingScreen({ lvl, progressValue, max }) {
     </FlexColCenter>
   );
 }
-const DefaultImg = styled.img`
+const LoadingImg = styled.img`
   object-fit: cover;
   z-index: -1;
   width: 300px;
+  user-select: none;
   height: 300px;
   margin-top: 20px;
   border-radius: 24px;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCards } from "./useCards";
 import { useLvl } from "./useLvl";
 import { useScore } from "./useScore";
@@ -25,7 +25,6 @@ export default function useGameLogic() {
   }, [clickedCards]);
 
   useEffect(() => {
-    console.log(progressValue, maxValue);
     if (progressValue === maxValue) {
       window.setTimeout(() => setGameMode("game"), 480);
     }

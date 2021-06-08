@@ -8,7 +8,6 @@ import Image from "next/image";
 export default function Game() {
   const {
     cards,
-    setNewCards,
     score,
     cardClickHandler,
     bestScore,
@@ -19,10 +18,6 @@ export default function Game() {
     maxValue,
     clickedCards,
   } = useGameLogic();
-
-  useEffect(() => {
-    // setNewCards(selectRandomCards(34));
-  }, []);
 
   return (
     <React.Fragment>
@@ -37,7 +32,6 @@ export default function Game() {
           clickedCards={clickedCards}
           onClick={cardClickHandler}
           maxCards={maxValue}
-          // lvl={lvl}
           incrementProgress={incrementProgress}
         />
       )}
