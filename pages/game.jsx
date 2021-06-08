@@ -4,7 +4,7 @@ import LoadingScreen from "../components/Loading";
 import GameHeading from "../components/GameHeading";
 import GameBoard from "../components/Card";
 import useGameLogic from "../components/customHooks/useGameLogic";
-import Image from "next/image";
+import Link from "next/link";
 import { RainbowRegFont, LevelButton } from "../components/ReusableStyles";
 export default function Game() {
   const {
@@ -36,9 +36,13 @@ export default function Game() {
           incrementProgress={incrementProgress}
         />
       )}
-      <LeaderboardButton>
-        <RainbowRegFont>Leaderboard</RainbowRegFont>
-      </LeaderboardButton>
+      <Link href="/leaderboard">
+        <a>
+          <LeaderboardButton>
+            <RainbowRegFont>Leaderboard</RainbowRegFont>
+          </LeaderboardButton>
+        </a>
+      </Link>
     </GridLayout>
   );
 }

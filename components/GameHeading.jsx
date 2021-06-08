@@ -5,8 +5,6 @@ import {
   HighScore,
   StyledRegFont,
   RainbowRegFont,
-  LevelButton,
-  StyledButton,
 } from "../components/ReusableStyles";
 
 export default function GameHeading({ lvl, score, bestScore, gameMode }) {
@@ -73,7 +71,6 @@ const FlexColRight = styled.div`
   display: flex;
   width: max-content;
   flex-direction: column;
-  /* justify-content: flex-; */
   align-items: flex-end;
   gap: 10px;
 

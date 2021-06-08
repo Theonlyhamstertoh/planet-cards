@@ -1,7 +1,6 @@
-import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 import { CardFont } from "../components/ReusableStyles";
-import React, { useEffect } from "react";
+import React from "react";
 import uniqid from "uniqid";
 
 export default function GameBoard({ cards, onClick, incrementProgress, clickedCards, gameMode }) {
@@ -55,9 +54,7 @@ const Container = styled.div`
   grid-area: main;
   flex-wrap: wrap;
   margin-bottom: 30px;
-  /* gap: 20px; */
   justify-items: center;
-  /* grid-template-columns: repeat(auto-fit, 165px); */
   justify-content: center;
 
   @media (min-width: 950px) {

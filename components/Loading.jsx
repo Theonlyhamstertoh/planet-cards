@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import { FlexColCenter, RainbowHeadingFont, RainbowRegFont } from "./ReusableStyles";
-import Image from "next/image";
 import styled from "styled-components";
 
 const PLANETS = [
@@ -30,14 +29,7 @@ export default function LoadingScreen({ lvl, progressValue, max }) {
   return (
     <FlexColCenter>
       <Loading progressValue={progressValue} max={max} lvl={lvl} />
-      <LoadingImg
-        className="rotate"
-        // priority="true"
-        src={showPlanet()}
-        // width="300px"
-        // objectFit="contain"
-        // height="300px"
-      />
+      <LoadingImg className="rotate" src={showPlanet()} />
     </FlexColCenter>
   );
 }

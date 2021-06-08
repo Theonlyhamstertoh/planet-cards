@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import Router from "next/router";
 import styled from "styled-components";
+import Link from "next/link";
 
 const PLANETS = [
   "mars.jpg",
@@ -24,18 +25,14 @@ const PLANETS = [
 ];
 
 export default function StartScreen() {
-  const [isButtonClicked, setButtonClicked] = useState(false);
-
-  useEffect(() => {
-    if (isButtonClicked === true) {
-      Router.push("/game");
-    }
-  }, [isButtonClicked]);
-
   return (
     <FlexColCenter>
       <RainbowTitleFont>Planet Cards</RainbowTitleFont>
-      <RainbowButton onClick={() => setButtonClicked(true)} text="Start Game" />
+      <Link href="/game">
+        <a>
+          <RainbowButton text="Start Game" />
+        </a>
+      </Link>
       <LoadingImg
         className="rotate"
         src={"/images/cards/" + PLANETS[Math.floor(Math.random() * PLANETS.length)]}
@@ -54,4 +51,9 @@ const LoadingImg = styled.img`
   height: 300px;
   margin-top: 20px;
   border-radius: 24px;
+
+  @media (max-width: 400px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
