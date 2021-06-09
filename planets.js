@@ -109,7 +109,7 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "pluto.webp",
+    src: "Pluto.webp",
     id: uniqid(),
   },
   {

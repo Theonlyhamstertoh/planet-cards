@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const FlexRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const FlexSpaceBetween = styled(FlexRow)`
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
 export const FlexColCenter = styled.div`
   display: flex;
   flex-direction: column;
