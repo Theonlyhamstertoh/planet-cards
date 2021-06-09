@@ -27,6 +27,7 @@ export const FlexCol = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  position: relative;
   justify-content: center;
 `;
 export const StyledButton = styled.button`
@@ -54,12 +55,28 @@ export const StyledRegFont = styled.p`
 `;
 
 export const CardFont = styled(StyledRegFont)`
-  font-size: 15px;
+  font-size: 14px !important;
 
   @media (max-width: 1100px) {
-    font-size: 12.7px;
+    font-size: 12.7px !important;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 11px !important;
   }
 `;
+
+export const RainbowHeadingFont = styled.h3`
+  font-size: 27px;
+  width: 250px;
+  user-select: none;
+  text-align: center;
+  background: linear-gradient(268.84deg, #ff6ad5 5.71%, #ff42ca 5.72%, #ac5eff 82.65%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+`;
+
 export const RainbowRegFont = styled(StyledRegFont)`
   background: linear-gradient(268.84deg, #e646b8 5.71%, #ff42ca 5.72%, #ac5eff 122.65%);
   -webkit-background-clip: text;

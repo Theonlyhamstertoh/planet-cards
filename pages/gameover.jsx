@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { FlexCol, LevelButton, RainbowRegFont } from "../components/ReusableStyles";
+import {
+  FlexCol,
+  LevelButton,
+  RainbowRegFont,
+  RainbowHeadingFont,
+} from "../components/ReusableStyles";
 
 export default function GameOver() {
   return (
@@ -10,6 +15,7 @@ export default function GameOver() {
         <SquareInfo>
           <RainbowHeadingFont style={{ marginBottom: "10px" }}>YOU REACHED TO</RainbowHeadingFont>
           <img className="square" src="/images/icons/Rectangle.png" />
+
           <RainbowRegFont>Level: 4</RainbowRegFont>
           <RainbowRegFont>Score: 38</RainbowRegFont>
         </SquareInfo>
@@ -25,6 +31,7 @@ export default function GameOver() {
           </div>
         </PolygonInfo>
         <FlexCol>
+          <img className="polygon absolutePosition rotate" src="/images/icons/Polygon.svg" />
           <GOButton>PLAY AGAIN</GOButton>
           <GOButton>RETURN TO HOME</GOButton>
         </FlexCol>
@@ -52,6 +59,15 @@ const GOContainer = styled.div`
   .smallFont {
     font-size: 13px;
   }
+
+  .absolutePosition {
+    position: absolute;
+    left: 40%;
+    z-index: -2;
+    top: -190%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+  }
 `;
 
 const GOInnerContainer = styled.div`
@@ -74,6 +90,7 @@ const SquareInfo = styled.div`
   .square {
     position: absolute;
     left: 50%;
+    user-select: none;
     box-shadow: 15px 15px 5px rgba(7, 7, 7, 0.24);
     z-index: -1;
     transition: all 1s;
@@ -84,6 +101,7 @@ const SquareInfo = styled.div`
 const PolygonInfo = styled.div`
   position: relative;
   margin-bottom: 60px;
+  user-select: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,13 +167,4 @@ const StyledGOButton = styled(LevelButton)`
   &:active {
     transform: scale(0.8);
   }
-`;
-const RainbowHeadingFont = styled.h3`
-  font-size: 27px;
-  width: 250px;
-  text-align: center;
-  background: linear-gradient(268.84deg, #ff6ad5 5.71%, #ff42ca 5.72%, #ac5eff 82.65%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 5px;
 `;

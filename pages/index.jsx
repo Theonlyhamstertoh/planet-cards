@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  RainbowButton,
-  FlexColCenter,
-  RainbowHeadingFont,
-  RainbowTitleFont,
-} from "../components/ReusableStyles";
+import React from "react";
+import { RainbowButton, FlexColCenter, RainbowTitleFont } from "../components/ReusableStyles";
 import Image from "next/image";
 import Router from "next/router";
 import styled from "styled-components";

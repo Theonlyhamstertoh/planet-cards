@@ -5,7 +5,7 @@ import GameHeading from "../components/GameHeading";
 import GameBoard from "../components/Card";
 import useGameLogic from "../components/customHooks/useGameLogic";
 import Link from "next/link";
-import GameOver from "../components/GameOver";
+// import GameOver from "../components/GameOver";
 import { RainbowRegFont, LevelButton } from "../components/ReusableStyles";
 export default function Game() {
   const {

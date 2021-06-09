@@ -38,6 +38,18 @@ const GlobalStyles = createGlobalStyle`
     animation: rotate 20s linear infinite;
   }
 
+  body::-webkit-scrollbar {
+  width: 5px;
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(269.18deg, #ff42c9d4 5.4%, #ff42c9cc 5.41%, #7b00ffd6 97.42%);
+  border-radius: 30px;
+}
 .defaultImg {
   object-fit: cover;
   width: 100%;
