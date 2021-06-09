@@ -3,6 +3,7 @@ import Head from "next/head";
 const GlobalStyles = createGlobalStyle`
   body {
     background: #000000;
+
     padding: 0;
     margin: 0;
     

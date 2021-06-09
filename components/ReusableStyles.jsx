@@ -22,6 +22,13 @@ export const FlexColCenter = styled.div`
   margin: 0 auto;
 `;
 
+export const FlexCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+`;
 export const StyledButton = styled.button`
   background: linear-gradient(
     269.56deg,
@@ -54,7 +61,7 @@ export const CardFont = styled(StyledRegFont)`
   }
 `;
 export const RainbowRegFont = styled(StyledRegFont)`
-  background: linear-gradient(268.84deg, #ff6ad5 5.71%, #ff42ca 5.72%, #ac5eff 122.65%);
+  background: linear-gradient(268.84deg, #e646b8 5.71%, #ff42ca 5.72%, #ac5eff 122.65%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
@@ -62,10 +69,7 @@ export const RainbowRegFont = styled(StyledRegFont)`
 export const HighScore = styled(RainbowRegFont)`
   padding: 0 20px;
 `;
-export const RainbowHeadingFont = styled(RainbowRegFont)`
-  font-size: 33px;
-  margin-bottom: 5px;
-`;
+
 export const RainbowTitleFont = styled.h1`
   background: radial-gradient(
     76.92% 121.42% at 66.76% 32.14%,
