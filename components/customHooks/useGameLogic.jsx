@@ -12,17 +12,32 @@ export default function useGameLogic() {
   const { lvl, nextLvl, resetLvl, isInitialLvl } = useLvl();
   const { setClickedCards, clickedCards, resetClickedCards } = useClickedCards();
   const { setMaxValue, resetProgress, incrementProgress, maxValue, progressValue } = useLoading();
-  const [gameMode, setGameMode] = useState("start");
+  const [gameMode, setGameMode] = useState("nextLevel");
   const [allPlanetCards, setAllPlanetCards] = useState(planets);
 
   useEffect(() => {
     if (cards !== null && clickedCards.length === cards.length) {
       nextLvl();
+      setGameMode("nextLevel");
       resetClickedCards();
+      roundReset();
     } else if (clickedCards.length !== 0) {
       setNewCards(shuffleCards(cards));
     }
   }, [clickedCards]);
+
+  useEffect(() => {
+    if (gameMode === "start") {
+      setGameMode("nextLevel");
+      resetLvl();
+      resetScore();
+      resetCards();
+      resetClickedCards();
+    }
+    if (gameMode === "nextLevel") {
+      roundReset();
+    }
+  }, [gameMode]);
 
   useEffect(() => {
     if (progressValue === maxValue) {
@@ -30,25 +45,21 @@ export default function useGameLogic() {
     }
   }, [progressValue]);
 
-  useEffect(() => {
+  function roundReset() {
     resetProgress();
     setMaxValue(lvl.cardsCount * 10);
-    setGameMode("nextLevel");
     setAllPlanetCards((prev) => {
       return prev.map((planetObject) => {
         return { ...planetObject, id: uniqid() };
       });
     });
     setNewCards(selectRandomCards(lvl.cardsCount));
-  }, [isInitialLvl, lvl]);
+  }
 
   function cardClickHandler(e) {
     const cardId = e.currentTarget.dataset.name;
     if (clickedCards.includes(cardId)) {
-      resetLvl();
-      resetScore();
-      resetCards();
-      resetClickedCards();
+      setGameMode("gameover");
     } else {
       updateScore(1);
       setClickedCards((state) => [...state, cardId]);

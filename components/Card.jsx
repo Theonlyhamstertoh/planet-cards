@@ -13,7 +13,7 @@ export default function GameBoard({ cards, onClick, incrementProgress, clickedCa
   };
 
   return (
-    <Container style={gameMode === "nextLevel" ? { display: "none" } : {}}>
+    <Container style={gameMode !== "game" ? { display: "none" } : {}}>
       {cards.map((image) => {
         const name = image.src.replace(/\.(jpe?g|gif|png|webp)$/i, "");
         return (
@@ -50,6 +50,7 @@ function Card({ onClick, children, image, dataName, onLoad, clickedCards }) {
 
 const Container = styled.div`
   width: 100%;
+  align-items: center;
   display: flex;
   grid-area: main;
   flex-wrap: wrap;
@@ -99,6 +100,8 @@ const IndividualCard = styled.div`
   transition: all 300ms;
   &:hover {
     transform: scale(1.07);
+    /* flex: 0 0 165px; */
+    /* height: 198px; */
   }
   &:active {
     transform: scale(0.8);

@@ -21,7 +21,6 @@ export default function LoadingScreen({ lvl, progressValue, max }) {
     if (lvl.num === 1 || lvl.num > 10) {
       return "/images/cards/mars.jpg";
     } else if (lvl.num < 11) {
-      console.log(PLANETS[lvl.num]);
       return `/images/cards/${PLANETS[lvl.num]}`;
     }
   }

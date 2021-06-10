@@ -9,7 +9,7 @@ import {
 
 export default function GameHeading({ lvl, score, bestScore, gameMode }) {
   return (
-    <SpaceBetween style={gameMode === "nextLevel" ? { display: "none" } : {}}>
+    <SpaceBetween style={gameMode !== "game" ? { display: "none" } : {}}>
       <CenterText>
         <RainbowTitleFont>Planet Cards</RainbowTitleFont>
         <Caption>Don't click the same planet twice!</Caption>

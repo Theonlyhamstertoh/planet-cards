@@ -5,7 +5,7 @@ import GameHeading from "../components/GameHeading";
 import GameBoard from "../components/Card";
 import useGameLogic from "../components/customHooks/useGameLogic";
 import Link from "next/link";
-// import GameOver from "../components/GameOver";
+import GameOver from "../components/GameOver";
 import { RainbowRegFont, LevelButton } from "../components/ReusableStyles";
 export default function Game() {
   const {
@@ -18,6 +18,7 @@ export default function Game() {
     progressValue,
     incrementProgress,
     maxValue,
+    setGameMode,
     clickedCards,
   } = useGameLogic();
 
@@ -37,13 +38,17 @@ export default function Game() {
           incrementProgress={incrementProgress}
         />
       )}
-      <Link href="/leaderboard">
-        <a>
-          <LeaderboardButton>
-            <RainbowRegFont>Leaderboard</RainbowRegFont>
-          </LeaderboardButton>
-        </a>
-      </Link>
+
+      {gameMode === "gameover" && <GameOver setGameMode={setGameMode} score={score} lvl={lvl} />}
+      {gameMode === "game" && (
+        <Link href="/leaderboard">
+          <a>
+            <LeaderboardButton>
+              <RainbowRegFont>Leaderboard</RainbowRegFont>
+            </LeaderboardButton>
+          </a>
+        </Link>
+      )}
     </GridLayout>
   );
 }
