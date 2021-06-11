@@ -19,7 +19,6 @@ export default function Game() {
     incrementProgress,
     maxValue,
     setGameMode,
-    clickedCards,
   } = useGameLogic();
 
   return (
