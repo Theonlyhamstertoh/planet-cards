@@ -11,7 +11,6 @@ export const useLvl = () => {
     setIsInitialLvl(false);
     setLvl((prevLvl) => {
       let cardsCount = prevLvl.cardsCount < MAX_CARDS ? prevLvl.cardsCount + CARD_STEPS : MAX_CARDS;
-      console.log(cardsCount);
       let num = prevLvl.num + 1;
       return { cardsCount, num };
     });

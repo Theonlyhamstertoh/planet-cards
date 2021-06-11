@@ -4,7 +4,7 @@ import Image from "next/image";
 import Router from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
-
+import { RainbowRegFont } from "../components/ReusableStyles";
 const PLANETS = [
   "mars.jpg",
   "Venus.jpg",
@@ -29,24 +29,36 @@ export default function StartScreen() {
         </a>
       </Link>
       <LoadingImg
-        className="rotate"
         src={"/images/cards/" + PLANETS[Math.floor(Math.random() * PLANETS.length)]}
         width="400px"
         objectFit="contain"
         height="400px"
       />
+      <a style={{ zIndex: "10" }} href="https://github.com/Theonlyhamstertoh" target="_blank">
+        <RainbowRegFont style={{ marginTop: "30px" }}>Created by theonlyhamster</RainbowRegFont>
+      </a>
     </FlexColCenter>
   );
 }
 const LoadingImg = styled.img`
   object-fit: cover;
-  z-index: -1;
+  z-index: 1;
   width: 300px;
   user-select: none;
   height: 300px;
   margin-top: 20px;
   border-radius: 24px;
+  transition: 0.3s all;
+  animation: rotate 20s linear infinite;
 
+  @media (min-width: 700px) {
+    &:hover {
+      width: 500px;
+      height: 500px;
+      cursor: pointer;
+      animation: rotate 2s linear infinite;
+    }
+  }
   @media (max-width: 400px) {
     width: 200px;
     height: 200px;

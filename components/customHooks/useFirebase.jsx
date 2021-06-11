@@ -9,14 +9,13 @@ export const initializeFireStore = () => {
       .onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
           if (change.type === "added") {
-            console.log(change.type);
             setLeaderboardData((prev) => [...prev, { ...change.doc.data(), id: change.doc.id }]);
-          } 
+          }
         });
       });
     return () => {
       setLeaderboardData([]);
-    }
+    };
   }, []);
 
   function sortTop(sortBy) {

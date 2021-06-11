@@ -39,10 +39,23 @@ export const StyledButton = styled.button`
   border-radius: 36px;
   width: 172px;
   border: none;
-  z-index: 1;
+  position: relative;
+  z-index: 10;
   cursor: pointer;
   height: 51px;
   margin: 20px 0;
+  transition: 0.6s all;
+  &:hover {
+    transform: scale(0.8);
+  }
+  &:active {
+    transform: scale(1);
+  }
+
+  @media (max-width: 450px) {
+    height: 44px;
+    width: 140px;
+  }
 `;
 
 export const StyledRegFont = styled.p`
@@ -107,7 +120,7 @@ export const RainbowTitleFont = styled.h1`
     font-size: 45px;
   }
   @media (max-width: 380px) {
-    font-size: 35px;
+    font-size: 40px;
   }
 `;
 

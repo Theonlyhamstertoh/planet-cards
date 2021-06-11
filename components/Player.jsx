@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FlexSpaceBetween } from "./ReusableStyles";
 
 export const Player = ({ num, name, score }) => {
@@ -14,7 +14,13 @@ export const Player = ({ num, name, score }) => {
 export const Creator = ({ num, name, score }) => {
   return (
     <LBPlayerRow>
-      <LBRegularFont>
+      <LBRegularFont
+        special
+        link
+        as="a"
+        href="https://github.com/Theonlyhamstertoh"
+        target="_blank"
+      >
         {name}
         <CreatorText>CREATOR</CreatorText>
       </LBRegularFont>
@@ -79,7 +85,11 @@ const LBRegularFont = styled.p`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
+  ${({ special }) =>
+    special &&
+    css`
+      color: #9a48a7;
+    `}
   transition: font-size 0.3s;
   @media (max-width: 800px) {
     font-size: 17px;

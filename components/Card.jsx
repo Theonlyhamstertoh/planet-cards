@@ -33,13 +33,9 @@ export default function GameBoard({ cards, onClick, incrementProgress, clickedCa
   );
 }
 
-function Card({ onClick, children, image, dataName, onLoad, clickedCards }) {
+function Card({ onClick, children, image, dataName, onLoad }) {
   return (
-    <IndividualCard
-      style={clickedCards.includes(image) ? { background: "green" } : {}}
-      onClick={onClick}
-      data-name={dataName}
-    >
+    <IndividualCard onClick={onClick} data-name={dataName}>
       <Frame>
         <DefaultImg onLoad={onLoad} src={"/images/cards/" + image} alt={"picture of " + children} />
       </Frame>
