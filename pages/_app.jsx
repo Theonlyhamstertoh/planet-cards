@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 import Head from "next/head";
-import { analytics } from "../lib/firebase";
 import { useEffect } from "react";
 const GlobalStyles = createGlobalStyle`
   body {
@@ -82,7 +81,7 @@ progress::-webkit-progress-value {
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    analytics;
+    console.log("Asdlkj");
   }, []);
   return (
     <>
