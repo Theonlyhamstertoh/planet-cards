@@ -1,9 +1,9 @@
 # From [The Odin Project](https://www.theodinproject.com/)
 
 ## Links
-> [See Figma Designs](https://www.figma.com/file/B7tMCUy6CrVMklKnBVAImR/Untitled?node-id=0%3A1)
+### > [See Figma Designs](https://www.figma.com/file/B7tMCUy6CrVMklKnBVAImR/Untitled?node-id=0%3A1)
 
-> [Live Link](https://planet-cards.vercel.app/)
+### > [Live Link](https://planet-cards.vercel.app/)
 
 ## Images 
 **Start Screen**
@@ -17,15 +17,6 @@
 **Leader Board Screen**
 ![image](public/images/screenshots/leaderboard.png)
 
-## Mobile Display
-**Start Screen**
-![image](public/images/screenshots/phonestart.png)
-**Game Screen**
-![image](public/images/screenshots/phonegame.png)
-**Game Over Screen**
-![image](public/images/screenshots/phonegameover.png)
-**Leader Board Screen**
-![image](public/images/screenshots/phoneleaderboard.png)
 
 ## Attributes
 - Great thanks to Igor's amazing [memory-card](https://github.com/igorashs/react-memory-card), [live-link](https://igorashs.github.io/react-memory-card/). Inspired by his levels and his custom hooks set up.
