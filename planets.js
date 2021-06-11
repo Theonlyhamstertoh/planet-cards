@@ -17,7 +17,7 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "Brown dwarf.jpg",
+    src: "brown dwarf.jpg",
     id: uniqid(),
   },
   {
@@ -25,7 +25,7 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "Ceres.jpg",
+    src: "ceres.jpg",
     id: uniqid(),
   },
   {
@@ -33,7 +33,7 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "Earth.jpg",
+    src: "earth.jpg",
     id: uniqid(),
   },
   {
@@ -49,7 +49,7 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "Hd 189733b.jpg",
+    src: "hd 189733b.jpg",
     id: uniqid(),
   },
   {
@@ -77,11 +77,11 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "Mars.jpg",
+    src: "mars.jpg",
     id: uniqid(),
   },
   {
-    src: "Mercury.jpg",
+    src: "mercury.jpg",
     id: uniqid(),
   },
   {
@@ -93,11 +93,11 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "Moon.jpg",
+    src: "moon.jpg",
     id: uniqid(),
   },
   {
-    src: "Neptune.jpg",
+    src: "neptune.jpg",
     id: uniqid(),
   },
   {
@@ -109,15 +109,15 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "Pluto.webp",
+    src: "pluto.webp",
     id: uniqid(),
   },
   {
-    src: "Saturn.jpg",
+    src: "saturn.jpg",
     id: uniqid(),
   },
   {
-    src: "Sun.jpg",
+    src: "sun.jpg",
     id: uniqid(),
   },
   {
@@ -129,7 +129,7 @@ export const planets = [
     id: uniqid(),
   },
   {
-    src: "Uranus.jpg",
+    src: "uranus.jpg",
     id: uniqid(),
   },
   {
