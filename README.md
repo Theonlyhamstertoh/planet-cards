@@ -1,9 +1,9 @@
 # From [The Odin Project](https://www.theodinproject.com/)
 
 ## Links
-### > [See Figma Designs](https://www.figma.com/file/B7tMCUy6CrVMklKnBVAImR/Untitled?node-id=0%3A1)
+> ###  [See Figma Designs](https://www.figma.com/file/B7tMCUy6CrVMklKnBVAImR/Untitled?node-id=0%3A1)
 
-### > [Live Link](https://planet-cards.vercel.app/)
+> ### [Live Link](https://planet-cards.vercel.app/)
 
 ## Images 
 **Start Screen**
