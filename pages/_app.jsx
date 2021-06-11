@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import Head from "next/head";
+import { analytics } from "../lib/firebase";
+import { useEffect } from "react";
 const GlobalStyles = createGlobalStyle`
   body {
     background: #000000;
@@ -79,10 +81,14 @@ progress::-webkit-progress-value {
 `;
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    analytics;
+  }, []);
   return (
     <>
       <Head>
         <title>Planet Cards</title>
+        <link rel="shortcut icon" href="/images/icons/favicon.svg" />
       </Head>
       <GlobalStyles />
       <Component {...pageProps} />
