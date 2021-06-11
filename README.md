@@ -18,28 +18,14 @@
 ![image](public/images/screenshots/leaderboard.png)
 
 ## Mobile Display
-<table>
-  <tr>
-    <td>Start Page</td>
-     <td>Loading Page</td>
-     <td>Game Page</td>
-  </tr>
-  <tr>
-    <td><img src="public/images/screenshots/phonestart.png" width=270 height=480></td>
-    <td><img src="public/images/screenshots/phonestart.png" width=270 height=480></td>
-    <td><img src="public/images/screenshots/phonegame.png" width=270 height=480></td>
-  </tr>
- </table>
-<table>
-  <tr>
-    <td>Game Over page</td>
-     <td>Leader board Page</td>
-  </tr>
-  <tr>
-    <td><img src="public/images/screenshots/phonegameover.png" width=270 height=480></td>
-    <td><img src="public/images/screenshots/phoneleaderboard.png" width=270 height=480></td>
-  </tr>
- </table>
+**Start Screen**
+![image](public/images/screenshots/phonestart.png)
+**Game Screen**
+![image](public/images/screenshots/phonegame.png)
+**Game Over Screen**
+![image](public/images/screenshots/phonegameover.png)
+**Leader Board Screen**
+![image](public/images/screenshots/phoneleaderboard.png)
 
 ## Attributes
 - Great thanks to Igor's amazing [memory-card](https://github.com/igorashs/react-memory-card), [live-link](https://igorashs.github.io/react-memory-card/). Inspired by his levels and his custom hooks set up.

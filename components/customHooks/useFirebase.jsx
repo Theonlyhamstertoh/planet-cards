@@ -3,6 +3,7 @@ import db from "../../lib/firebase";
 
 export const initializeFireStore = () => {
   const [leaderboardData, setLeaderboardData] = useState([]);
+  // create event listener to Firebase to watch for any changes. Allows for real time update.
   useEffect(() => {
     db.collection("leaderboard")
       .orderBy("score", "desc")
@@ -18,7 +19,7 @@ export const initializeFireStore = () => {
     };
   }, []);
 
-  function sortTop(sortBy) {
+  function sortTop() {
     const sortedLeaderBoard = leaderboardData.sort((a, b) => {
       if (a.score < b.score) {
         return 1;
@@ -30,7 +31,7 @@ export const initializeFireStore = () => {
     });
     setLeaderboardData([...sortedLeaderBoard]);
   }
-  function sortBottom(sortBy) {
+  function sortBottom() {
     const sortedLeaderBoard = leaderboardData.sort((a, b) => {
       if (a.score < b.score) {
         return -1;

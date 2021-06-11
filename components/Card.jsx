@@ -3,11 +3,12 @@ import { CardFont } from "../components/ReusableStyles";
 import React from "react";
 import uniqid from "uniqid";
 
+// game page
 export default function GameBoard({ cards, onClick, incrementProgress, clickedCards, gameMode }) {
   if (cards === null) {
     return;
   }
-
+  // connects to the loading bar. When image loads, increment the progress bar by 10
   const loaded = (img) => {
     incrementProgress(10);
   };
@@ -18,6 +19,7 @@ export default function GameBoard({ cards, onClick, incrementProgress, clickedCa
         const name = image.src.replace(/\.(jpe?g|gif|png|webp)$/i, "");
         return (
           <Card
+            // telling cards that we want unique ones every time.
             key={uniqid()}
             dataName={image.src}
             image={image.src}
@@ -33,6 +35,7 @@ export default function GameBoard({ cards, onClick, incrementProgress, clickedCa
   );
 }
 
+// individual cards
 function Card({ onClick, children, image, dataName, onLoad }) {
   return (
     <IndividualCard onClick={onClick} data-name={dataName}>

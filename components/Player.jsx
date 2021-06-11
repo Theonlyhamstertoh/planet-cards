@@ -29,12 +29,6 @@ export const Creator = ({ num, name, score }) => {
   );
 };
 
-const CreatorText = styled.strong`
-  color: #f538e2;
-  margin-left: 5px;
-  font-size: 12px;
-`;
-
 export const ColumnTitle = () => {
   return (
     <Hash>
@@ -45,6 +39,12 @@ export const ColumnTitle = () => {
     </Hash>
   );
 };
+
+const CreatorText = styled.strong`
+  color: #f538e2;
+  margin-left: 5px;
+  font-size: 12px;
+`;
 
 const Number = styled.div`
   min-width: 35px;

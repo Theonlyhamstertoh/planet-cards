@@ -42,6 +42,7 @@ export default function useGameLogic() {
     }
   }, [gameMode]);
 
+  // when progress reach max, wait 500ms so the animation can complete
   useEffect(() => {
     if (progressValue === maxValue) {
       window.setTimeout(() => setGameMode("game"), 480);
@@ -75,25 +76,15 @@ export default function useGameLogic() {
   };
 
   return {
-    shuffleCards,
-    resetCards,
-    setClickedCards,
-    resetScore,
-    updateScore,
-    score,
     cards,
-    setNewCards,
+    score,
+    cardClickHandler,
     bestScore,
     lvl,
-    nextLvl,
-    resetLvl,
     gameMode,
-    setGameMode,
-    cardClickHandler,
-    selectRandomCards,
-    incrementProgress,
     progressValue,
+    incrementProgress,
     maxValue,
-    clickedCards,
+    setGameMode,
   };
 }
