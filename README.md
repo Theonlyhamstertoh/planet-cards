@@ -7,27 +7,39 @@
 
 ## Images 
 **Start Screen**
-![image](public/images/screenshots/start.png);
+![image](public/images/screenshots/start.png)
 **Loading Screen**
-![image](public/images/screenshots/loading.png);
+![image](public/images/screenshots/loading.png)
 **Game Screen**
-![image](public/images/screenshots/game.png);
+![image](public/images/screenshots/game.png)
 **Game Over Screen**
-![image](public/images/screenshots/gameover.png);
+![image](public/images/screenshots/gameover.png)
 **Leader Board Screen**
-![image](public/images/screenshots/leaderboard.png);
+![image](public/images/screenshots/leaderboard.png)
 
 ## Mobile Display
-
-![image](public/images/screenshots/phonestart.png);
-
-![image](public/images/screenshots/phoneloading.png);
-
-![image](public/images/screenshots/phonegame.png);
-
-![image](public/images/screenshots/phonegameover.png);
-
-![image](public/images/screenshots/phoneleaderboard.png);
+<table>
+  <tr>
+    <td>Start Page</td>
+     <td>Loading Page</td>
+     <td>Game Page</td>
+  </tr>
+  <tr>
+    <td><img src="public/images/screenshots/phonestart.png" width=270 height=480></td>
+    <td><img src="public/images/screenshots/phonestart.png" width=270 height=480></td>
+    <td><img src="public/images/screenshots/phonegame.png" width=270 height=480></td>
+  </tr>
+ </table>
+<table>
+  <tr>
+    <td>Game Over page</td>
+     <td>Leader board Page</td>
+  </tr>
+  <tr>
+    <td><img src="public/images/screenshots/phonegameover.png" width=270 height=480></td>
+    <td><img src="public/images/screenshots/phoneleaderboard.png" width=270 height=480></td>
+  </tr>
+ </table>
 
 ## Attributes
 - Great thanks to Igor's amazing [memory-card](https://github.com/igorashs/react-memory-card), [live-link](https://igorashs.github.io/react-memory-card/). Inspired by his levels and his custom hooks set up.
