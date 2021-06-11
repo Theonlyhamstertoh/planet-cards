@@ -50,15 +50,6 @@ const LoadingImg = styled.img`
   border-radius: 24px;
   transition: 0.3s all;
   animation: rotate 20s linear infinite;
-
-  @media (min-width: 700px) {
-    &:hover {
-      width: 500px;
-      height: 500px;
-      cursor: pointer;
-      animation: rotate 2s linear infinite;
-    }
-  }
   @media (max-width: 400px) {
     width: 200px;
     height: 200px;
