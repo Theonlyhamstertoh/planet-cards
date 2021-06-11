@@ -14,6 +14,9 @@ export const initializeFireStore = () => {
           } 
         });
       });
+    return () => {
+      setLeaderboardData([]);
+    }
   }, []);
 
   function sortTop(sortBy) {
