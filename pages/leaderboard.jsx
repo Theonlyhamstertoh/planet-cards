@@ -1,36 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  LevelButton,
-  RainbowTitleFont,
-  FlexRow,
-  FlexSpaceBetween,
-} from "../components/ReusableStyles";
+import { useState, useEffect } from "react";
+import { RainbowTitleFont, FlexRow, FlexSpaceBetween } from "../components/ReusableStyles";
+import Link from "next/link"
+import { initializeFireStore } from "../components/customHooks/useFirebase";
 import { ColumnTitle, Player, Creator } from "../components/Player";
 export default function Leaderboard() {
+  const { leaderboardData, sortBottom, sortTop } = initializeFireStore();
+
   return (
     <LBContainer>
       <LeaderBoardTitle />
       <FlexRow>
-        <LBSortButton>Top</LBSortButton>
-        <LBSortButton>Low</LBSortButton>
+        <LBSortButton onClick={sortTop}>Top</LBSortButton>
+        <LBSortButton onClick={sortBottom}>Low</LBSortButton>
       </FlexRow>
       <ol className="LBList">
         <ColumnTitle />
-        <Creator name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertohasfasfasf" score="50" />
-        <Player name="theonlyhamstertohasfasfafas" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
-        <Player name="theonlyhamstertoh" score="50" />
+        {leaderboardData.map(({ id, playername, score, creator}) => {
+          
+          if (creator === true) {
+            return <Creator key={id} name={playername} score={score} />;
+          } else {
+            return <Player key={id} name={playername} score={score} />;
+          }
+        })}
       </ol>
     </LBContainer>
   );
@@ -40,10 +34,15 @@ const LeaderBoardTitle = () => {
   return (
     <FlexSpaceBetween>
       <LBTitle>LEADERBOARD</LBTitle>
-      <FlexRow>
-        <LBHeading htmlFor="back">Back</LBHeading>
-        <input type="image" id="back" className="backButton" src="/images/icons/backButton.svg" />
-      </FlexRow>
+      <Link href="/">
+        <a>
+          <FlexRow>
+            <LBHeading htmlFor="back">Back</LBHeading>
+            <input type="image" id="back" className="backButton" src="/images/icons/backButton.svg" />
+          </FlexRow>
+        </a>
+      </Link>
+     
     </FlexSpaceBetween>
   );
 };
@@ -122,6 +121,13 @@ const LBSortButton = styled.button`
   border-radius: 8px;
   margin-top: 20px;
   transition: all 0.3s;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.8);
+  }
   @media (max-width: 800px) {
     font-size: 14px;
     margin: 0;

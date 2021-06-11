@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { addPlayerToFireStore } from "../components/customHooks/useFirebase";
 import { FlexCol, LevelButton, RainbowRegFont, RainbowHeadingFont } from "./ReusableStyles";
 
-export default function GameOver({ setGameMode, lvl, score }) {
+export default function GameOver({ setGameMode, lvl, score, useFirebase }) {
+  const [name, setName] = useState("");
+
+  function addPlayer(e) {
+    if (name.length <= 0) return;
+    const lowercasename = name.toLocaleLowerCase();
+    addPlayerToFireStore(score, lowercasename, false);
+  }
   return (
     <GOContainer>
       <GOInnerContainer>
@@ -19,10 +27,22 @@ export default function GameOver({ setGameMode, lvl, score }) {
           <img className="polygon" src="/images/icons/Polygon.svg" />
           <div className="nameLabel">
             <RainbowRegFont>NAME: </RainbowRegFont>
-            <input type="text" id="name" className="nameInput" autoComplete="off" maxLength="40" />
+            <input
+              type="text"
+              id="name"
+              className="nameInput"
+              autoComplete="off"
+              maxLength="40"
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
+
           <div className="flexEnd">
-            <GOButton>SAVE</GOButton>
+            <Link href="/leaderboard">
+              <a>
+                <GOButton onClick={addPlayer}>{name.length <= 0 ? "INPUT NAME" : "SAVE"}</GOButton>
+              </a>
+            </Link>
           </div>
         </PolygonInfo>
         <FlexCol>
@@ -56,6 +76,11 @@ const GOContainer = styled.div`
 
   .smallFont {
     font-size: 13px;
+  }
+
+  .disabled {
+    background: #7d7d7d;
+    color: #3a3a3a;
   }
 `;
 

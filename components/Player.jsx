@@ -127,6 +127,7 @@ const LBPlayerRow = styled.li`
 `;
 
 const Hash = styled(LBPlayerRow)`
+  counter-increment: none;
   &:before {
     content: "#";
     background: none;

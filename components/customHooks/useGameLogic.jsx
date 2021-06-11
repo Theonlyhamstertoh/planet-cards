@@ -12,9 +12,12 @@ export default function useGameLogic() {
   const { lvl, nextLvl, resetLvl, isInitialLvl } = useLvl();
   const { setClickedCards, clickedCards, resetClickedCards } = useClickedCards();
   const { setMaxValue, resetProgress, incrementProgress, maxValue, progressValue } = useLoading();
+  // const { getLeaderBoard, updatePlayerScore, addPlayerToFireStore, deletePlayerScore } =
+  // useFirebase();
   const [gameMode, setGameMode] = useState("nextLevel");
   const [allPlanetCards, setAllPlanetCards] = useState(planets);
 
+  //initialize firestore event listener to listen for live changes.
   useEffect(() => {
     if (cards !== null && clickedCards.length === cards.length) {
       nextLvl();
