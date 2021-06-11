@@ -9,11 +9,25 @@
 **Start Screen**
 ![image](public/images/screenshots/start.png);
 **Loading Screen**
-**Game Over Screen**
+![image](public/images/screenshots/loading.png);
 **Game Screen**
+![image](public/images/screenshots/game.png);
+**Game Over Screen**
+![image](public/images/screenshots/gameover.png);
 **Leader Board Screen**
+![image](public/images/screenshots/leaderboard.png);
 
 ## Mobile Display
+
+![image](public/images/screenshots/phonestart.png);
+
+![image](public/images/screenshots/phoneloading.png);
+
+![image](public/images/screenshots/phonegame.png);
+
+![image](public/images/screenshots/phonegameover.png);
+
+![image](public/images/screenshots/phoneleaderboard.png);
 
 ## Attributes
 - Great thanks to Igor's amazing [memory-card](https://github.com/igorashs/react-memory-card), [live-link](https://igorashs.github.io/react-memory-card/). Inspired by his levels and his custom hooks set up.
